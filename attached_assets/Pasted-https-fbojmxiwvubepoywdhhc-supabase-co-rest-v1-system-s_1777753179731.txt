@@ -1,0 +1,289 @@
+https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_RESET
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_RESET
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_RESET
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+home.js?v=24:255 🤖 Sasha IA: Initializing Global Integration (Priority)...
+home.js?v=24:4677 ✅ Sasha IA: 3 chatbot instances found and animated.
+supabase.js:21  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+3supabase.js:21 @supabase/gotrue-js: Lock "lock:sb-fbojmxiwvubepoywdhhc-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+Ur @ supabase.js:21
+await in Ur
+_acquireLock @ supabase.js:24
+getSession @ supabase.js:24
+await in getSession
+_getAccessToken @ supabase.js:24
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this warning
+home.js?v=24:393 Investment sync failed: Nr: Lock "lock:sb-fbojmxiwvubepoywdhhc-auth-token" was released because another request stole it
+    at ds.Ur [as lock] (supabase.js:21:20353)
+    at async ds._acquireLock (supabase.js:24:6821)
+    at async ds.updateUser (supabase.js:24:9487)
+(anonymous) @ home.js?v=24:393
+Promise.catch
+saveInvestmentState @ home.js?v=24:393
+getAllMissions @ home.js?v=24:1116
+updateDashboardMissions @ home.js?v=24:1290
+(anonymous) @ home.js?v=24:4625Understand this warning
+supabase.js:21  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:20  POST https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/online_users?on_conflict=user_id net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=24:313
+(anonymous) @ home.js?v=24:318Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:470
+loadUserData @ home.js?v=24:470
+await in loadUserData
+(anonymous) @ home.js?v=24:579Understand this error
+supabase.js:21  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+saveInvestmentState @ home.js?v=24:388
+getAllMissions @ home.js?v=24:1116
+renderActiveMissions @ home.js?v=24:1123
+(anonymous) @ home.js?v=24:1713
+setTimeout
+(anonymous) @ home.js?v=24:1703
+(anonymous) @ home.js?v=24:2789
+setTimeout
+handleTabWithLoader @ home.js?v=24:2786
+(anonymous) @ home.js?v=24:1694
+(anonymous) @ home.js?v=24:2399Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+    at async supabase.js:24:6736
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+saveInvestmentState @ home.js?v=24:388
+getAllMissions @ home.js?v=24:1116
+renderActiveMissions @ home.js?v=24:1123
+(anonymous) @ home.js?v=24:1713
+setTimeout
+(anonymous) @ home.js?v=24:1703
+(anonymous) @ home.js?v=24:2789
+setTimeout
+handleTabWithLoader @ home.js?v=24:2786
+(anonymous) @ home.js?v=24:1694
+(anonymous) @ home.js?v=24:2399Understand this error
+supabase.js:20  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2361
+(anonymous) @ home.js?v=24:2789
+setTimeout
+handleTabWithLoader @ home.js?v=24:2786
+(anonymous) @ home.js?v=24:2352
+(anonymous) @ home.js?v=24:2399Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+supabase.js:20  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2361
+(anonymous) @ home.js?v=24:2789
+setTimeout
+handleTabWithLoader @ home.js?v=24:2786
+(anonymous) @ home.js?v=24:2352
+(anonymous) @ home.js?v=24:2399Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:470
+loadUserData @ home.js?v=24:470
+await in loadUserData
+(anonymous) @ home.js?v=24:579Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error

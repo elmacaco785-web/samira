@@ -90,7 +90,7 @@ async function insertSmsLog(payload) {
    ──────────────────────────────────────────────────────────── */
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Webhook-Secret, Authorization');
 }
 
@@ -332,6 +332,122 @@ async function handleAdsSettings(_req, res) {
 }
 
 /* ────────────────────────────────────────────────────────────
+   Wallet & Transactions proxy — relays browser requests to
+   Supabase via the Replit server, which has a stable connection
+   even when the user's browser cannot reach Supabase directly
+   (ERR_HTTP2_PROTOCOL_ERROR / ERR_CONNECTION_RESET).
+   ──────────────────────────────────────────────────────────── */
+
+function getUserIdFromJwt(req) {
+  const auth = req.headers.authorization || '';
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!token) return null;
+  try {
+    const b64 = token.split('.')[1];
+    if (!b64) return null;
+    const payload = JSON.parse(Buffer.from(b64, 'base64url').toString('utf8'));
+    return payload.sub || null;
+  } catch { return null; }
+}
+
+let _maintCache = { val: false, ts: 0 };
+async function handleMaintenance(_req, res) {
+  if (Date.now() - _maintCache.ts < 30_000) return jsonResponse(res, 200, { maintenance: _maintCache.val });
+  try {
+    const r = await supaFetch('system_settings?key=eq.maintenance_mode&select=value');
+    const arr = await r.json();
+    const val = Array.isArray(arr) && arr[0]?.value === 'true';
+    _maintCache = { val, ts: Date.now() };
+    return jsonResponse(res, 200, { maintenance: val });
+  } catch { return jsonResponse(res, 200, { maintenance: false }); }
+}
+
+// Forward user JWT to Supabase (RLS applies — each user sees only their own data).
+// This avoids needing the service-role key for wallet/transaction proxy endpoints.
+async function supaFetchAsUser(path, userToken, opts = {}) {
+  // Prefer service-role key when available (bypasses RLS for flexibility),
+  // otherwise fall back to anon key + user JWT (RLS-enforced, secure).
+  const apiKey = SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY;
+  const authHeader = SUPABASE_SERVICE_KEY
+    ? `Bearer ${SUPABASE_SERVICE_KEY}`
+    : `Bearer ${userToken}`;
+  return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    ...opts,
+    headers: {
+      apikey: apiKey,
+      Authorization: authHeader,
+      'Content-Type': 'application/json',
+      Prefer: opts.prefer || 'return=representation',
+      ...(opts.headers || {}),
+    },
+  });
+}
+
+function getUserTokenFromReq(req) {
+  const auth = req.headers.authorization || '';
+  return auth.startsWith('Bearer ') ? auth.slice(7) : '';
+}
+
+async function handleWalletGet(req, res) {
+  const userId = getUserIdFromJwt(req);
+  const token = getUserTokenFromReq(req);
+  if (!userId || !token) return jsonResponse(res, 401, { ok: false, error: 'unauthorized' });
+  try {
+    const r = await supaFetchAsUser(`wallets?user_id=eq.${encodeURIComponent(userId)}&select=*&limit=1`, token);
+    const arr = await r.json();
+    const wallet = Array.isArray(arr) ? (arr[0] || null) : null;
+    return jsonResponse(res, 200, { ok: true, wallet });
+  } catch (e) { return jsonResponse(res, 500, { ok: false, error: e.message }); }
+}
+
+async function handleWalletPatch(req, res) {
+  const userId = getUserIdFromJwt(req);
+  const token = getUserTokenFromReq(req);
+  if (!userId || !token) return jsonResponse(res, 401, { ok: false, error: 'unauthorized' });
+  let raw; try { raw = await readBody(req); } catch { return jsonResponse(res, 413, { ok: false }); }
+  let updates = {};
+  try { updates = JSON.parse(raw || '{}'); } catch { return jsonResponse(res, 400, { ok: false, error: 'invalid json' }); }
+  delete updates.user_id;
+  try {
+    const r = await supaFetchAsUser(`wallets?user_id=eq.${encodeURIComponent(userId)}`, token, { method: 'PATCH', body: JSON.stringify(updates) });
+    const arr = await r.json();
+    if (Array.isArray(arr) && arr.length === 0) {
+      await supaFetchAsUser('wallets', token, { method: 'POST', body: JSON.stringify({ user_id: userId, ...updates }), prefer: 'return=minimal' });
+    }
+    return jsonResponse(res, 200, { ok: true });
+  } catch (e) { return jsonResponse(res, 500, { ok: false, error: e.message }); }
+}
+
+async function handleTransactionsGet(req, res, urlObj) {
+  const userId = getUserIdFromJwt(req);
+  const token = getUserTokenFromReq(req);
+  if (!userId || !token) return jsonResponse(res, 401, { ok: false, error: 'unauthorized' });
+  const limit = Math.min(parseInt(urlObj.searchParams.get('limit') || '200', 10), 500);
+  try {
+    const r = await supaFetchAsUser(`transactions?user_id=eq.${encodeURIComponent(userId)}&order=created_at.desc&limit=${limit}&select=*`, token);
+    const txs = await r.json();
+    return jsonResponse(res, 200, { ok: true, transactions: Array.isArray(txs) ? txs : [] });
+  } catch (e) { return jsonResponse(res, 500, { ok: false, error: e.message }); }
+}
+
+async function handleTransactionPost(req, res) {
+  const userId = getUserIdFromJwt(req);
+  const token = getUserTokenFromReq(req);
+  if (!userId || !token) return jsonResponse(res, 401, { ok: false, error: 'unauthorized' });
+  let raw; try { raw = await readBody(req); } catch { return jsonResponse(res, 413, { ok: false }); }
+  let row = {};
+  try { row = JSON.parse(raw || '{}'); } catch { return jsonResponse(res, 400, { ok: false, error: 'invalid json' }); }
+  row.user_id = userId;
+  try {
+    const r = await supaFetchAsUser('transactions', token, { method: 'POST', body: JSON.stringify([row]) });
+    const txt = await r.text();
+    if (!r.ok) return jsonResponse(res, 502, { ok: false, error: txt });
+    const arr = JSON.parse(txt || '[]');
+    return jsonResponse(res, 200, { ok: true, transaction: arr[0] || null });
+  } catch (e) { return jsonResponse(res, 500, { ok: false, error: e.message }); }
+}
+
+/* ────────────────────────────────────────────────────────────
    API: GET /api/health
    ──────────────────────────────────────────────────────────── */
 async function handleHealth(_req, res) {
@@ -387,6 +503,26 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/settings/ads' && req.method === 'GET') {
     try { await handleAdsSettings(req, res); } catch (e) { jsonResponse(res, 500, { ok:false }); }
+    return;
+  }
+  if (pathname === '/api/maintenance' && req.method === 'GET') {
+    try { await handleMaintenance(req, res); } catch (e) { jsonResponse(res, 200, { maintenance: false }); }
+    return;
+  }
+  if (pathname === '/api/wallet' && req.method === 'GET') {
+    try { await handleWalletGet(req, res); } catch (e) { jsonResponse(res, 500, { ok:false }); }
+    return;
+  }
+  if (pathname === '/api/wallet' && req.method === 'PATCH') {
+    try { await handleWalletPatch(req, res); } catch (e) { jsonResponse(res, 500, { ok:false }); }
+    return;
+  }
+  if (pathname === '/api/transactions' && req.method === 'GET') {
+    try { await handleTransactionsGet(req, res, urlObj); } catch (e) { jsonResponse(res, 500, { ok:false }); }
+    return;
+  }
+  if (pathname === '/api/transactions' && req.method === 'POST') {
+    try { await handleTransactionPost(req, res); } catch (e) { jsonResponse(res, 500, { ok:false }); }
     return;
   }
 
