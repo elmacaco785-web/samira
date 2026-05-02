@@ -15,6 +15,18 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, 
         autoRefreshToken: true,
         persistSession: true,
         detectSessionInUrl: false
+    },
+    global: {
+        // Strip the redundant `apikey` header before every request.
+        // The server-side proxy injects the service-role key, so sending
+        // the anon-key JWT here is wasteful AND pushes total header size
+        // above Replit's reverse-proxy limit (→ HTTP 431).
+        fetch: (url, options = {}) => {
+            const h = Object.assign({}, options.headers || {});
+            delete h['apikey'];
+            delete h['x-client-info'];
+            return fetch(url, Object.assign({}, options, { headers: h }));
+        }
     }
 });
 

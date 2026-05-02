@@ -1,0 +1,88 @@
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…e/rest/v1/online_users?select=*&last_seen=gte.2026-05-02T20%3A51%3A06.552Z 431 (Request Header Fields Too Large)
+
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/admin_messages?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=* 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/withdrawal_requests?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/pending_payments?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+admin.html:1285 📊 Carregando dashboard...
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…abase/rest/v1/chat_messages?select=*&sender=eq.user&read_by_admin=eq.false 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/refund_requests?select=*&status=eq.pending 502 (Bad Gateway)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…/pending_payments?select=*&type=eq.deposit&order=created_at.desc&limit=100 502 (Bad Gateway)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/pending_payments?select=amount&status=eq.approved 431 (Request Header Fields Too Large)
+admin.html:1289 📊 Receita MozPay: null 
+{message: ''}
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…nding_payments?select=*&type=eq.investment&order=created_at.desc&limit=100 502 (Bad Gateway)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/system_settings?select=* 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/withdrawal_requests?select=*&status=eq.pending 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…e/rest/v1/online_users?select=*&last_seen=gte.2026-05-02T20%3A51%3A16.553Z 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=* 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/pending_payments?select=*&status=eq.pending 502 (Bad Gateway)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/system_settings?select=value&key=eq.site_domain 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/admin_messages?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=* 502 (Bad Gateway)
+admin.html:1296 📊 Users count: null 
+{message: ''}
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/refund_requests?select=*&status=eq.pending 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…abase/rest/v1/chat_messages?select=*&sender=eq.user&read_by_admin=eq.false 502 (Bad Gateway)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…s?select=user_id%2Cuser_name%2Cuser_phone%2Cactive_investment%2Ccreated_at 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=*&level_plan=not.is.null 502 (Bad Gateway)
+admin.html:1303 📊 Investidores: null 
+{message: ''}
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=user_id%2Cbalance 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/withdrawal_requests?select=*&status=eq.pending 502 (Bad Gateway)
+admin.html:1308 📊 WD pendentes: null 
+{message: ''}
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/admin_messages?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…e/rest/v1/online_users?select=*&last_seen=gte.2026-05-02T20%3A51%3A35.890Z 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/pending_payments?select=*&status=eq.pending 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/withdrawal_requests?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/refund_requests?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ GET https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=total_deposited%2Ctotal_withdrawn 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…e/rest/v1/online_users?select=*&last_seen=gte.2026-05-02T20%3A51%3A36.559Z 502 (Bad Gateway)
+
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/refund_requests?select=*&status=eq.pending 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.…abase/rest/v1/chat_messages?select=*&sender=eq.user&read_by_admin=eq.false 502 (Bad Gateway)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/wallets?select=* 431 (Request Header Fields Too Large)
+supabase.js:20 
+ HEAD https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/rest/v1/admin_messages?select=*&status=eq.pending 502 (Bad Gateway)
+﻿
+
+Press ctrl i to turn on code suggestions. Press ctrl x to disable code suggestions.
+ctrl
+i
+ to turn on code suggestions. Don't show again
+
