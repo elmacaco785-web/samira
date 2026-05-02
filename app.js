@@ -608,19 +608,19 @@ function initLoginScreen() {
                     // ── Validate invite code against real codes ───────────────
                     // Two sources: (1) user-generated code stored in
                     // user_preferences.invite_code, (2) admin-generated code
-                    // stored in invite_codes (single-use; "active" = no
-                    // used_by_user_id yet).
+                    // stored in invite_codes (reusable — multiple users can
+                    // register with the same code).
                     let invitedBy = null;
                     let validCodeSource = null;
                     try {
                         const [{ data: prefHit }, { data: codeHit }] = await Promise.all([
                             supabaseClient.from('user_preferences').select('user_id').eq('invite_code', inviteCodeVal).maybeSingle(),
-                            supabaseClient.from('invite_codes').select('code, used_by_user_id').eq('code', inviteCodeVal).maybeSingle()
+                            supabaseClient.from('invite_codes').select('code').eq('code', inviteCodeVal).maybeSingle()
                         ]);
                         if (prefHit?.user_id) {
                             invitedBy = prefHit.user_id;
                             validCodeSource = 'user';
-                        } else if (codeHit && !codeHit.used_by_user_id) {
+                        } else if (codeHit) {
                             validCodeSource = 'admin';
                         }
                     } catch(e) { console.warn('invite check failed:', e); }
@@ -737,12 +737,8 @@ function initLoginScreen() {
                                     invite_credit_given: false
                                 }, { onConflict: 'user_id' });
                                 if (validCodeSource === 'admin') {
-                                    // Mark the admin code as used (single-use schema).
-                                    try {
-                                        await supabaseClient.from('invite_codes')
-                                            .update({ used_by_user_id: newUserId, used_at: new Date().toISOString() })
-                                            .eq('code', inviteCodeVal);
-                                    } catch(e) { console.warn('mark code used failed:', e); }
+                                    // Codes are reusable — no longer mark as used.
+                                    // Multiple users can register with the same admin code.
                                 }
                             }
                         } catch(persistErr) { console.warn('[signup] post-create persist failed:', persistErr); }

@@ -312,7 +312,6 @@ async function handleChatSend(req, res) {
     body: body.slice(0, 4000),
     user_name: isAnon ? '[Visitante]' : (p.name ? String(p.name).slice(0, 120) : null),
     user_phone: isAnon ? null : (p.phone ? String(p.phone).slice(0, 32) : null),
-    is_anonymous: isAnon,
   };
 
   try {
