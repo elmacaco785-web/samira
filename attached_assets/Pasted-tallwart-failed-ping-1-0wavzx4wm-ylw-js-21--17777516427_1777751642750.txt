@@ -1,0 +1,520 @@
+tallwart: failed ping 1
+0wavzx4wm.ylw.js:21 
+      /////////////////////
+   ///////////////////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////        Curious and driven?
+  ///////////////@@@@@@@///////        Work with us!
+  ///////////////@@@@@@@///////
+  ///////////////@@@@@@@///////        https://join.replit.com/hack.with.us
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@#//////////////
+   ///////////////////////////
+      /////////////////////
+      
+0wavzx4wm.ylw.js:21 Download the Apollo DevTools for a better development experience: https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm
+0wavzx4wm.ylw.js:21 [LaunchDarkly] LaunchDarkly client initialized
+samira:1 Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.
+samira:1 [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://replit.com/public/fonts/hack-regular.woff2?sha=3114f1256
+0i8wy8tbht2ow.js:2 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+C @ 0i8wy8tbht2ow.js:2Understand this error
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'ambient-light-sensor'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'battery'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'execution-while-not-rendered'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'execution-while-out-of-viewport'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'layout-animations'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'legacy-image-formats'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'navigation-override'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'oversized-images'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'publickey-credentials'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'speaker-selection'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'unoptimized-images'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'unsized-media'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Unrecognized feature: 'pointer-lock'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Allow attribute will take precedence over 'allowfullscreen'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0i8wy8tbht2ow.js:2 Allow attribute will take precedence over 'allowpaymentrequest'.
+C @ 0i8wy8tbht2ow.js:2Understand this warning
+0j210tspwt3vr.js:9 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev') does not match the recipient window's origin ('https://replit.com').
+w @ 0j210tspwt3vr.js:9Understand this warning
+0wavzx4wm.ylw.js:21 Haven't heard from the server in a while, resetting connection...
+(anonymous) @ 0wavzx4wm.ylw.js:21Understand this warning
+0i8wy8tbht2ow.js:2 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+C @ 0i8wy8tbht2ow.js:2Understand this error
+0j210tspwt3vr.js:9 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev') does not match the recipient window's origin ('https://replit.com').
+w @ 0j210tspwt3vr.js:9Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.Understand this error
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'ambient-light-sensor'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'battery'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'execution-while-not-rendered'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'execution-while-out-of-viewport'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'layout-animations'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'legacy-image-formats'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'navigation-override'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'oversized-images'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'publickey-credentials'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'speaker-selection'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'unoptimized-images'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Unrecognized feature: 'unsized-media'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Allow attribute will take precedence over 'allowfullscreen'.Understand this warning
+workspace_iframe.html?initialPath=%2F&id=default-start-application:32 Allow attribute will take precedence over 'allowpaymentrequest'.Understand this warning
+20wavzx4wm.ylw.js:21 Haven't heard from the server in a while, resetting connection...
+(anonymous) @ 0wavzx4wm.ylw.js:21Understand this warning
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERRORUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_CLOSEDUnderstand this error
+fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=value&key=eq.maintenance_mode:1  Failed to load resource: net::ERR_CONNECTION_RESETUnderstand this error
+injected.js:37 🤖 Sasha IA: Initializing Global Integration (Priority)...
+injected.js:37 ✅ Sasha IA: 3 chatbot instances found and animated.
+injected.js:214  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+injected.js:37 TypeError: Failed to fetch
+    at Object.apply (injected.js:214:39)
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+(anonymous) @ injected.js:37
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+stallwart.build.js:1 stallwart: failed ping 1
+injected.js:214  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+injected.js:37 TypeError: Failed to fetch
+    at Object.apply (injected.js:214:39)
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+(anonymous) @ injected.js:37
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  POST https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/online_users?on_conflict=user_id net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=24:313
+(anonymous) @ home.js?v=24:318Understand this error
+injected.js:214  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+injected.js:37 TypeError: Failed to fetch
+    at Object.apply (injected.js:214:39)
+    at supabase.js:21:2872
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+(anonymous) @ injected.js:37
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+0wavzx4wm.ylw.js:21 Haven't heard from the server in a while, resetting connection...
+(anonymous) @ 0wavzx4wm.ylw.js:21
+(anonymous) @ 13yey0lla-l85.js:518
+r @ 0wavzx4wm.ylw.js:21Understand this warning
+injected.js:214  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2324
+(anonymous) @ home.js?v=24:2752
+setTimeout
+handleTabWithLoader @ home.js?v=24:2749
+(anonymous) @ home.js?v=24:2315
+(anonymous) @ home.js?v=24:2362Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  PATCH https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2324
+(anonymous) @ home.js?v=24:2752
+setTimeout
+handleTabWithLoader @ home.js?v=24:2749
+(anonymous) @ home.js?v=24:2315
+(anonymous) @ home.js?v=24:2362Understand this error
+injected.js:214  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2324
+(anonymous) @ home.js?v=24:2752
+setTimeout
+handleTabWithLoader @ home.js?v=24:2749
+(anonymous) @ home.js?v=24:2315
+(anonymous) @ home.js?v=24:2362Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  POST https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?columns=%22user_id%22%2C%22balance%22%2C%22daily_earnings%22%2C%22total_withdrawn%22%2C%22total_deposited%22%2C%22level_expires_at%22%2C%22level_plan%22 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+injected.js:214  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2324
+(anonymous) @ home.js?v=24:2752
+setTimeout
+handleTabWithLoader @ home.js?v=24:2749
+(anonymous) @ home.js?v=24:2315
+(anonymous) @ home.js?v=24:2362Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+injected.js:214  HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=24:2324
+(anonymous) @ home.js?v=24:2752
+setTimeout
+handleTabWithLoader @ home.js?v=24:2749
+(anonymous) @ home.js?v=24:2315
+(anonymous) @ home.js?v=24:2362Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_RESET
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1
+setInterval
+startNotifPolling @ home.js?v=24:234
+setTimeout
+(anonymous) @ home.js?v=24:252Understand this error
+injected.js:214  POST https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=24:313
+setInterval
+(anonymous) @ home.js?v=24:319Understand this error
+injected.js:214  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
+apply @ injected.js:214
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
