@@ -1,0 +1,66 @@
+Carregando dashboard...
+admin.html:1287 📊 Receita MozPay: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] null
+admin.html:1294 📊 Users count: 24 null
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+subscribe @ supabase.js:4
+initRealtime @ admin.html:1227
+initApp @ admin.html:1278
+(anonymous) @ admin.html:1157Understand this error
+admin.html:1301 📊 Investidores: 3 null
+admin.html:1306 📊 WD pendentes: 1 null
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+_reconnectAuth @ supabase.js:20Understand this error
+admin.html:1337 📊 Transações recentes: (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] null
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+_reconnectAuth @ supabase.js:20Understand this error
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+_reconnectAuth @ supabase.js:20Understand this error
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+(anonymous) @ supabase.js:4
+teardown @ supabase.js:4
+(anonymous) @ supabase.js:4Understand this error
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+(anonymous) @ supabase.js:4
+(anonymous) @ supabase.js:4
+waitForSocketClosed @ supabase.js:4
+(anonymous) @ supabase.js:4
+waitForBufferDone @ supabase.js:4
+teardown @ supabase.js:4
+(anonymous) @ supabase.js:4Understand this error
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+(anonymous) @ supabase.js:4
+teardown @ supabase.js:4
+(anonymous) @ supabase.js:4Understand this error
+supabase.js:4 WebSocket connection to 'wss://bd54ccd3-0e1a-4706-9442-969cd9a2a3c2-00-3c572ncjzrzla.riker.replit.dev/supabase/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0&vsn=2.0.0' failed: 
+transportConnect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+connect @ supabase.js:4
+_reconnectAuth @ supabase.js:20Understand this error
+admin.html:1283 📊 Carregando dashboard...
+admin.html:1287 📊 Receita MozPay: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] null
+admin.html:1294 📊 Users count: 24 null
+admin.html:1301 📊 Investidores: 3 null
+admin.html:1306 📊 WD pendentes: 1 null

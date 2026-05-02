@@ -6,9 +6,12 @@ const SUPABASE_URL = window.location.origin + '/supabase';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
 // Configure Supabase to persist session in localStorage (keep user logged in)
+// storageKey is pinned to the real project ref so the localStorage key never
+// changes even if we route requests through a proxy URL.
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
     auth: {
         storage: window.localStorage,
+        storageKey: 'sb-fbojmxiwvubepoywdhhc-auth-token',
         autoRefreshToken: true,
         persistSession: true,
         detectSessionInUrl: false

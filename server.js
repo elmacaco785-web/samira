@@ -13,9 +13,10 @@
      payment, and credits the wallet / activates the level.
    ============================================================ */
 
-const http = require('http');
-const fs   = require('fs');
-const path = require('path');
+const http   = require('http');
+const tls    = require('tls');
+const fs     = require('fs');
+const path   = require('path');
 const crypto = require('crypto');
 
 const PORT = 5000;
@@ -627,4 +628,79 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`MozPay static server running on port ${PORT}`);
   console.log(`SMS webhook endpoint: POST /api/sms-webhook  (header X-Webhook-Secret)`);
+});
+
+/* ────────────────────────────────────────────────────────────
+   WebSocket proxy — tunnels wss://<replit>/supabase/realtime/*
+   through to Supabase Realtime using TLS, so the browser's
+   Supabase Realtime client works without direct WS access.
+   ──────────────────────────────────────────────────────────── */
+const SUPA_HOST = 'fbojmxiwvubepoywdhhc.supabase.co';
+
+server.on('upgrade', (req, clientSocket, head) => {
+  const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  const pathname = urlObj.pathname;
+
+  if (!pathname.startsWith('/supabase/')) {
+    clientSocket.destroy();
+    return;
+  }
+
+  const subpath = pathname.slice('/supabase/'.length); // e.g. realtime/v1/websocket
+  const upQuery = new URL(`https://${SUPA_HOST}/${subpath}${urlObj.search || ''}`);
+  // Inject service key as apikey so Realtime authenticates the connection
+  upQuery.searchParams.set('apikey', SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY);
+  const upstreamPath = upQuery.pathname + upQuery.search;
+
+  clientSocket.on('error', () => {});
+
+  // Open TLS connection to Supabase
+  const upSocket = tls.connect({ host: SUPA_HOST, port: 443, servername: SUPA_HOST }, () => {
+    // Reconstruct the WebSocket handshake headers
+    const headers = [
+      `GET ${upstreamPath} HTTP/1.1`,
+      `Host: ${SUPA_HOST}`,
+      `Upgrade: websocket`,
+      `Connection: Upgrade`,
+      `Sec-WebSocket-Key: ${req.headers['sec-websocket-key'] || ''}`,
+      `Sec-WebSocket-Version: ${req.headers['sec-websocket-version'] || '13'}`,
+      `apikey: ${SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY}`,
+      `Authorization: Bearer ${SUPABASE_ANON_KEY}`,
+    ];
+    if (req.headers['sec-websocket-protocol']) {
+      headers.push(`Sec-WebSocket-Protocol: ${req.headers['sec-websocket-protocol']}`);
+    }
+    headers.push('', '');
+    upSocket.write(headers.join('\r\n'));
+
+    // Pipe head bytes that arrived with the upgrade request
+    if (head && head.length) upSocket.write(head);
+  });
+
+  upSocket.on('error', (e) => {
+    console.error('[ws-proxy] upstream error:', e.message);
+    clientSocket.destroy();
+  });
+
+  // Wait for upstream 101 Switching Protocols, then pipe both directions
+  let handshakeDone = false;
+  let buf = Buffer.alloc(0);
+
+  upSocket.on('data', (chunk) => {
+    if (handshakeDone) return; // piped already
+    buf = Buffer.concat([buf, chunk]);
+    const sep = buf.indexOf('\r\n\r\n');
+    if (sep === -1) return;
+    handshakeDone = true;
+    const responseHeaders = buf.slice(0, sep + 4);
+    const remaining = buf.slice(sep + 4);
+    // Forward 101 response to browser
+    clientSocket.write(responseHeaders);
+    if (remaining.length) clientSocket.write(remaining);
+    // Now pipe raw frames in both directions
+    upSocket.pipe(clientSocket);
+    clientSocket.pipe(upSocket);
+  });
+
+  clientSocket.on('error', () => upSocket.destroy());
 });
