@@ -1056,7 +1056,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     // Config
-    const SUPA_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
+    const SUPA_URL = window.location.origin + '/supabase';
     const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
     const db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
     const ADMIN_PASS = 'GLOKKSPAZ40123';

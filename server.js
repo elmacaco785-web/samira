@@ -90,8 +90,78 @@ async function insertSmsLog(payload) {
    ──────────────────────────────────────────────────────────── */
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Webhook-Secret, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Webhook-Secret, Authorization, apikey, X-Client-Info, Prefer, X-Supabase-Api-Version');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count');
+}
+
+/* ────────────────────────────────────────────────────────────
+   Generic Supabase reverse-proxy  /supabase/*
+   Rewrites the URL from /supabase/<path> → Supabase REST/Auth.
+   Uses service-role key so RLS is bypassed server-side.
+   The user's own JWT is still forwarded so Supabase can identify
+   the caller when needed (e.g. auth endpoints).
+   ──────────────────────────────────────────────────────────── */
+async function handleSupabaseProxy(req, res, subpath, urlObj) {
+  const serviceKey = SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY;
+  const isAuthEndpoint = subpath.startsWith('auth/');
+
+  // Auth endpoints: always pass anon key as apikey + forward user's Authorization
+  // REST endpoints: use service key as both apikey and auth (bypasses RLS safely)
+  const apikey = isAuthEndpoint ? SUPABASE_ANON_KEY : serviceKey;
+  const userAuth = req.headers['authorization'] || '';
+  const authHeader = isAuthEndpoint
+    ? (userAuth || `Bearer ${SUPABASE_ANON_KEY}`)
+    : `Bearer ${serviceKey}`;
+
+  // Build upstream URL — preserve query string
+  const qs = urlObj.search || '';
+  const upstream = `${SUPABASE_URL}/${subpath}${qs}`;
+
+  // Collect request body (for POST/PATCH/PUT/DELETE)
+  let bodyBuf = null;
+  if (req.method !== 'GET' && req.method !== 'HEAD' && req.method !== 'OPTIONS') {
+    const chunks = [];
+    await new Promise((resolve, reject) => {
+      req.on('data', c => chunks.push(c));
+      req.on('end', resolve);
+      req.on('error', reject);
+    });
+    if (chunks.length) bodyBuf = Buffer.concat(chunks);
+  }
+
+  // Forward headers — inject correct auth
+  const fwdHeaders = {
+    'apikey': apikey,
+    'Authorization': authHeader,
+    'Content-Type': req.headers['content-type'] || 'application/json',
+  };
+  // Preserve PostgREST/GoTrue-specific headers
+  for (const h of ['prefer', 'x-supabase-api-version', 'range', 'x-client-info']) {
+    if (req.headers[h]) fwdHeaders[h] = req.headers[h];
+  }
+
+  try {
+    const upRes = await fetch(upstream, {
+      method: req.method,
+      headers: fwdHeaders,
+      body: bodyBuf || undefined,
+    });
+
+    // Forward response headers that matter to the client
+    const resHeaders = { 'Content-Type': upRes.headers.get('content-type') || 'application/json' };
+    for (const h of ['content-range', 'x-total-count', 'location']) {
+      const v = upRes.headers.get(h);
+      if (v) resHeaders[h] = v;
+    }
+    setCors(res);
+    res.writeHead(upRes.status, resHeaders);
+    const body = await upRes.arrayBuffer();
+    res.end(Buffer.from(body));
+  } catch (e) {
+    console.error('[supabase-proxy] upstream error:', e.message, '| path:', subpath);
+    jsonResponse(res, 502, { message: 'proxy error: ' + e.message, code: 'PROXY_ERROR' });
+  }
 }
 
 function readBody(req, maxBytes = 64 * 1024) {
@@ -471,6 +541,14 @@ const server = http.createServer(async (req, res) => {
   const pathname = urlObj.pathname;
 
   // --- API routes ---
+  // Generic Supabase proxy — intercepts ALL browser→Supabase calls
+  if (pathname.startsWith('/supabase/')) {
+    const subpath = pathname.slice('/supabase/'.length);
+    try { await handleSupabaseProxy(req, res, subpath, urlObj); }
+    catch (e) { console.error('[supabase-proxy] fatal:', e); jsonResponse(res, 502, { message: 'proxy error' }); }
+    return;
+  }
+
   if (pathname === '/api/sms-webhook' && req.method === 'POST') {
     try { await handleSmsWebhook(req, res, urlObj); }
     catch (e) { console.error('[sms-webhook] handler error:', e); jsonResponse(res, 500, { ok:false, error:'internal' }); }

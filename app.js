@@ -2,7 +2,7 @@
    MozPay — App Logic
    ============================================ */
 
-const SUPABASE_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
+const SUPABASE_URL = window.location.origin + '/supabase';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
 // Configure Supabase to persist session in localStorage (keep user logged in)
