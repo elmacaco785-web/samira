@@ -1,0 +1,42 @@
+-- ============================================
+-- COPIAR TODO ESTE CÓDIGO E COLAR NO SUPABASE SQL EDITOR
+-- Depois clicar em "Run" (botão verde)
+-- ============================================
+
+-- 1. CRIAR TABELA DE CONFIGURAÇÕES
+CREATE TABLE IF NOT EXISTS system_settings (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    key TEXT UNIQUE NOT NULL,
+    value TEXT,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. ATIVAR SEGURANÇA (Row Level Security)
+ALTER TABLE system_settings ENABLE ROW LEVEL SECURITY;
+
+-- 3. Criar POLICIES (permissões)
+-- Todos podem ler
+DROP POLICY IF EXISTS "public_read_settings" ON system_settings;
+CREATE POLICY "public_read_settings" ON system_settings FOR SELECT USING (true);
+
+-- Todos podem atualizar (para o admin poder mudar)
+DROP POLICY IF EXISTS "public_update_settings" ON system_settings;
+CREATE POLICY "public_update_settings" ON system_settings FOR UPDATE USING (true);
+
+-- Todos podem inserir
+DROP POLICY IF EXISTS "public_insert_settings" ON system_settings;
+CREATE POLICY "public_insert_settings" ON system_settings FOR INSERT WITH CHECK (true);
+
+-- 4. INSERIR VALORES INICIAIS
+INSERT INTO system_settings (key, value) VALUES
+('withdrawals_enabled', 'true'),
+('signup_enabled', 'true'),
+('maintenance_mode', 'false'),
+('payment_mpesa', '{"number": "845678756", "name": "Elia Tomas"}'),
+('payment_emola', '{"number": "878728161", "name": "Catia Amisse"}'),
+('payment_mkesh', '{"number": "832425172", "name": "Feruk Joan"}'),
+('payment_payfast', '{"number": "10293847", "name": "PayFast Lda"}')
+ON CONFLICT (key) DO NOTHING;
+
+-- 5. VERIFICAR SE FOI CRIADO
+SELECT * FROM system_settings ORDER BY key;

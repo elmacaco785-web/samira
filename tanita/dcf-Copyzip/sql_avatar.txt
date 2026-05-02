@@ -1,0 +1,4 @@
+-- COPIAR E COLAR NO SUPABASE SQL EDITOR
+-- Depois clicar em Run
+
+ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS avatar_url TEXT;

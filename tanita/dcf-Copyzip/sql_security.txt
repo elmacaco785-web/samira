@@ -1,0 +1,62 @@
+-- ================================
+-- TABELAS DE SEGURANCA E MENSAGENS
+-- ================================
+
+-- 1. Tabela de bloqueios (anti-brute force)
+CREATE TABLE IF NOT EXISTS login_attempts (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    identifier TEXT NOT NULL, -- IP ou telefone
+    attempt_count INTEGER DEFAULT 1,
+    first_attempt TIMESTAMPTZ DEFAULT NOW(),
+    last_attempt TIMESTAMPTZ DEFAULT NOW(),
+    blocked_until TIMESTAMPTZ
+);
+
+-- 2. Tabela de mensagens/support
+CREATE TABLE IF NOT EXISTS admin_messages (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    sender_phone TEXT, -- para não registados
+    sender_id TEXT,    -- user_id para registados
+    sender_name TEXT,
+    subject TEXT,
+    message TEXT NOT NULL,
+    status TEXT DEFAULT 'pending', -- pending, replied, closed
+    admin_reply TEXT,
+    replied_by TEXT,
+    replied_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 3. Notificacoes
+CREATE TABLE IF NOT EXISTS notifications (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id TEXT,
+    title TEXT NOT NULL,
+    message TEXT NOT NULL,
+    type TEXT DEFAULT 'broadcast',
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Activar RLS
+ALTER TABLE login_attempts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE admin_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+
+-- Policies
+CREATE POLICY "Anyone can insert login_attempts" ON login_attempts FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can read login_attempts" ON login_attempts FOR SELECT USING (true);
+CREATE POLICY "Anyone can update login_attempts" ON login_attempts FOR UPDATE USING (true);
+
+CREATE POLICY "Anyone can insert admin_messages" ON admin_messages FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can read admin_messages" ON admin_messages FOR SELECT USING (true);
+CREATE POLICY "Anyone can update admin_messages" ON admin_messages FOR UPDATE USING (true);
+
+CREATE POLICY "Anyone can insert notifications" ON notifications FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can read notifications" ON notifications FOR SELECT USING (true);
+CREATE POLICY "Anyone can update notifications" ON notifications FOR UPDATE USING (true);
+
+-- Indices
+CREATE INDEX idx_login_attempts_identifier ON login_attempts(identifier);
+CREATE INDEX idx_admin_messages_status ON admin_messages(status);
+CREATE INDEX idx_admin_messages_created ON admin_messages(created_at DESC);

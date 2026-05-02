@@ -1,0 +1,18 @@
+-- COPIAR E COLAR NO SUPABASE SQL EDITOR
+-- Criar tabela de notificacoes para o admin enviar
+
+CREATE TABLE IF NOT EXISTS notifications (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id TEXT,
+    title TEXT NOT NULL,
+    message TEXT NOT NULL,
+    type TEXT DEFAULT 'broadcast',
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY " Anyone can insert notifications" ON notifications FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can read notifications" ON notifications FOR SELECT USING (true);
+CREATE POLICY "Anyone can update notifications" ON notifications FOR UPDATE USING (true);

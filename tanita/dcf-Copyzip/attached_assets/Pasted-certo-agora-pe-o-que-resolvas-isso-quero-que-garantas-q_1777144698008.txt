@@ -1,0 +1,30 @@
+certo, agora peço que resolvas isso: quero que garantas que o projeto possa ser feito deploy ou hospedar em uma hospedagem de site, porque recetimente quando hospedei na vercel estava mostrar um erro 404, peço que garantas que tudo esteja corretissiom, e que nao haja nenhum problema ou falhas,e tambem sobre as fotos de perfil, quando o user coloca a foto de perfil do seu dispositivo e faz login num outro celular, ele nao consegui ver aquela foto de perfil, pareendo que o afoto estea sendo aramzenada no navegador, peço que corujas isso, para que mesmo trocando de celular consiga vela, ate podes fazer isso atravez do supabase, que ja esta configurado ai , ou no localstorage do supabase ou a melhor e inteligente solucao, e tambem sobre os niveis, quando um user ativa um nivel de investimento, aquele nivel fica ativo apenas  quando o user esta no browser que ativou, peço que corujas isso tambem, para que mesmo trocando de celular, tudo contnue sincronizado. e tambem nessa tela de login, nesse card que aparece:+10 000
+utilizadores já transformaram o seu telemóvel numa fonte de rendimento sustentável. peço que troques o conteudo desse cardd, para que mostre saques em tempo real, mas usuario por usario, mostrando hora,valor,nome,numero,etc com base nos dados desse card de levantametos em tempo real que esta ai abaixooo da tela de home, os dados devem seguir essa logica. ms ai deve ser um por um, mas tudo bem organizado e bem pensado, profisional e isntitucional,. e tambem ai nesse card:Escolha o seu nível
+Taxa única · 6 meses garantidos · Sem custos ocultos
+
+Nível
+Ganho / Dia
+Retorno
+I Iniciante
+25 MT
+14 dias
+II Junior
+60 MT
+12.5 dias
+III Aprendiz
+125 MT
+12 dias
+IV Experiente
+300 MT
+11.6 dias
+V Funcionário
+550 MT
+11.8 dias
+DESTAQUE
+VI Intermediário
+1 100 MT
+11.8 dias
+Duração de 6 meses · Reembolso garantido em menos de 48 horas
+
+que esta na tela de login, como odes ver esses niveis estao desatualizados e nao contem todas infos reais dos niveis reais (os niveis reais ou melhor as infos dos niveis reais estao na tela de missoes, na ssessao de niveis) e tambem peço que organizes a estrutura desses cards de niveis da tela de login, e tambem os dados para os reais.
+dcf
