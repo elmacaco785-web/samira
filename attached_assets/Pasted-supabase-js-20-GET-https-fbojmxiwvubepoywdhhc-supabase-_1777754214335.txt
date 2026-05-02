@@ -1,0 +1,49 @@
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=amount&status=eq.approved net::ERR_CONNECTION_CLOSED
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=* net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.investment&order=created_at.desc&limit=100 net::ERR_CONNECTION_RESET
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=amount&status=eq.approved net::ERR_CONNECTION_RESET
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.deposit&order=created_at.desc&limit=100 net::ERR_CONNECTION_RESET
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=* net::ERR_CONNECTION_RESET
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=* net::ERR_CONNECTION_RESET
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.deposit&order=created_at.desc&limit=100 net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=amount&status=eq.approved net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.investment&order=created_at.desc&limit=100 net::ERR_CONNECTION_CLOSED
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.investment&order=created_at.desc&limit=100 net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=* net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/chat_messages?select=*&sender=eq.user&read_by_admin=eq.false net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&status=eq.pending net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/withdrawal_requests?select=*&status=eq.pending net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/admin_messages?select=*&status=eq.pending net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/refund_requests?select=*&status=eq.pending net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ HEAD https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/online_users?select=*&last_seen=gte.2026-05-02T20%3A31%3A19.492Z net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=amount&status=eq.approved net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.investment&order=created_at.desc&limit=100 net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=amount&status=eq.approved net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=* net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=* net::ERR_HTTP2_PROTOCOL_ERROR
+supabase.js:20 
+ GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/pending_payments?select=*&type=eq.deposit&order=created_at.desc&limit=100 net::ERR_CONNECTION_CLOSED
+﻿
