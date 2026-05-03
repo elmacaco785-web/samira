@@ -70,6 +70,9 @@ MozPay is a mobile-first digital earning platform targeting the Mozambican marke
 ## Security
 - **NEVER hard-code the Supabase service-role key.** It must be supplied through the `SUPABASE_SERVICE_ROLE_KEY` env var (Replit Secret in dev, Vercel Environment Variable in prod). If missing, `/api/chat/*` and `/api/settings/ads` return HTTP 503 but the rest of the app keeps working.
 - The Supabase **anon** key is safe to ship to the client (it is gated by RLS) and remains inlined in `app.js`/`admin.html`/`server.js`.
+- **RLS STATUS (CRITICAL)**: As of the audit (2026-05-03) ALL tables (wallets, transactions, notifications, user_preferences, online_users, chat_messages, pending_payments, refund_requests, withdrawal_requests, admin_messages, invite_codes, sms_log, system_settings, etc.) have RLS **disabled** — any anonymous caller can read all user data. The fix SQL is in `supabase_rls_fix.sql`. Run it in Supabase Dashboard → SQL Editor. The proxy uses service_role (bypasses RLS) so the app continues working after enabling RLS.
+- **admin.html** was updated to use `window.location.origin + '/supabase'` (proxy) instead of direct supabase.co — this ensures admin queries go through service_role and bypass RLS after it is enabled.
+- **Rotate the service_role_key** in Supabase Dashboard → Settings → API, as it was shared in plain text in a chat session.
 
 ## Vercel Deployment
 - `vercel.json` excludes `/api/...` from the SPA catch-all (`/((?!api/).*)→/index.html`) so the file-system API routes are reachable.

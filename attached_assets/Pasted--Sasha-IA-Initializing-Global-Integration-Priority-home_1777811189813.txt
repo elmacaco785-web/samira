@@ -1,0 +1,50 @@
+🤖 Sasha IA: Initializing Global Integration (Priority)...
+home.js?v=11:3812 ✅ Sasha IA: 3 chatbot instances found and animated.
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+supabase.js:20  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
