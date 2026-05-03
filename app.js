@@ -9,8 +9,9 @@
 const SUPABASE_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
-// Proxy base URL — relative so it works on any domain (Render, local, etc.)
-const _PROXY_BASE = '/supabase';
+// Proxy base URL — must be a full URL (Supabase JS client rejects relative paths).
+// window.location.origin gives the correct host on any domain (Render, local, etc.)
+const _PROXY_BASE = window.location.origin + '/supabase';
 
 // Configure Supabase to route through our server proxy.
 // storageKey pinned to real project ref so localStorage key never changes.
