@@ -3,9 +3,6 @@
    ============================================================
    - Serves the SPA (HTML/JS/CSS) from this folder.
    - /supabase/* proxy: forwards browser→Supabase via HTTP/1.1.
-   - /ws/api WebSocket tunnel: routes Supabase REST calls over a
-     single HTTP/1.1 WebSocket, bypassing ERR_HTTP2_PROTOCOL_ERROR
-     on networks (e.g. Mozambican mobile) that drop HTTP/2 streams.
    ============================================================ */
 
 const http   = require('http');
@@ -687,91 +684,6 @@ server.listen(PORT, '0.0.0.0', () => {
 });
 
 /* ────────────────────────────────────────────────────────────
-   _localRequest — HTTP/1.1 request to localhost (used by
-   WebSocket tunnel to proxy /api/* calls to our own server).
-   ──────────────────────────────────────────────────────────── */
-function _localRequest(url, opts = {}) {
-  return new Promise((resolve, reject) => {
-    const u = new URL(url);
-    const bodyBuf = opts.body ? Buffer.from(String(opts.body)) : null;
-    const reqOpts = {
-      hostname: '127.0.0.1',
-      port: PORT,
-      path: u.pathname + u.search,
-      method: opts.method || 'GET',
-      headers: Object.assign({}, opts.headers || {}),
-    };
-    if (bodyBuf) reqOpts.headers['content-length'] = String(bodyBuf.length);
-    const req = http.request(reqOpts, (res) => {
-      const chunks = [];
-      res.on('data', c => chunks.push(c));
-      res.on('end', () => {
-        const buf = Buffer.concat(chunks);
-        const status = res.statusCode || 0;
-        const hdrs = res.headers || {};
-        resolve({
-          status, ok: status >= 200 && status < 300,
-          headers: { get: (k) => hdrs[k.toLowerCase()] || null, _raw: hdrs },
-          text: () => Promise.resolve(buf.toString('utf8')),
-          json: () => Promise.resolve(JSON.parse(buf.toString('utf8'))),
-        });
-      });
-      res.on('error', reject);
-    });
-    req.on('error', reject);
-    req.setTimeout(30000, () => req.destroy(new Error('local request timeout')));
-    if (bodyBuf) req.write(bodyBuf);
-    req.end();
-  });
-}
-
-/* ────────────────────────────────────────────────────────────
-   WebSocket API tunnel — /ws/api
-   Lets the browser send Supabase REST requests over a single
-   HTTP/1.1 WebSocket connection instead of HTTP/2 fetch calls.
-   This completely bypasses ERR_HTTP2_PROTOCOL_ERROR on networks
-   that drop HTTP/2 streams (common on Mozambican mobile data).
-
-   Protocol: browser sends JSON text frames:
-     { id, method, url, headers, body }
-   Server replies with JSON text frames:
-     { id, status, headers, body }  or  { id, error }
-   ──────────────────────────────────────────────────────────── */
-function _wsParseFrame(buf) {
-  if (buf.length < 2) return null;
-  const masked = (buf[1] & 0x80) !== 0;
-  let len = buf[1] & 0x7f, offset = 2;
-  if (len === 126) {
-    if (buf.length < 4) return null;
-    len = buf.readUInt16BE(2); offset = 4;
-  } else if (len === 127) {
-    if (buf.length < 10) return null;
-    len = Number(buf.readBigUInt64BE(2)); offset = 10;
-  }
-  if (buf.length < offset + (masked ? 4 : 0) + len) return null;
-  let payload;
-  if (masked) {
-    const mask = buf.slice(offset, offset + 4);
-    payload = Buffer.from(buf.slice(offset + 4, offset + 4 + len));
-    for (let i = 0; i < payload.length; i++) payload[i] ^= mask[i % 4];
-    offset += 4;
-  } else {
-    payload = buf.slice(offset, offset + len);
-  }
-  return { opcode: buf[0] & 0x0f, payload, consumed: offset + len };
-}
-
-function _wsMakeFrame(text) {
-  const data = Buffer.from(text);
-  const len = data.length;
-  let hdr;
-  if (len < 126)        { hdr = Buffer.from([0x81, len]); }
-  else if (len < 65536) { hdr = Buffer.alloc(4); hdr[0] = 0x81; hdr[1] = 126; hdr.writeUInt16BE(len, 2); }
-  else                  { hdr = Buffer.alloc(10); hdr[0] = 0x81; hdr[1] = 127; hdr.writeBigUInt64BE(BigInt(len), 2); }
-  return Buffer.concat([hdr, data]);
-}
-
-/* ────────────────────────────────────────────────────────────
    WebSocket proxy — tunnels wss://<host>/supabase/realtime/*
    through to Supabase Realtime using TLS, so the browser's
    Supabase Realtime client works without direct WS access.
@@ -781,54 +693,6 @@ const SUPA_HOST = 'fbojmxiwvubepoywdhhc.supabase.co';
 server.on('upgrade', (req, clientSocket, head) => {
   const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = urlObj.pathname;
-
-  /* ── /ws/api — REST-over-WebSocket tunnel ── */
-  if (pathname === '/ws/api') {
-    const key = req.headers['sec-websocket-key'] || '';
-    const accept = crypto.createHash('sha1')
-      .update(key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11')
-      .digest('base64');
-    clientSocket.write(
-      'HTTP/1.1 101 Switching Protocols\r\n' +
-      'Upgrade: websocket\r\nConnection: Upgrade\r\n' +
-      `Sec-WebSocket-Accept: ${accept}\r\n\r\n`
-    );
-    clientSocket.on('error', () => {});
-    let wsBuf = (head && head.length) ? Buffer.from(head) : Buffer.alloc(0);
-    clientSocket.on('data', (chunk) => {
-      wsBuf = Buffer.concat([wsBuf, chunk]);
-      let frame;
-      while ((frame = _wsParseFrame(wsBuf)) !== null) {
-        wsBuf = wsBuf.slice(frame.consumed);
-        if (frame.opcode === 0x8) { clientSocket.destroy(); return; }
-        if (frame.opcode !== 0x1) continue;
-        let msg;
-        try { msg = JSON.parse(frame.payload.toString()); } catch { continue; }
-        if (msg.ping) {
-          if (!clientSocket.destroyed) clientSocket.write(_wsMakeFrame(JSON.stringify({ pong: true })));
-          continue;
-        }
-        const { id, method, url, headers, body } = msg;
-        // Route local /api/* paths via HTTP to localhost; everything else via HTTPS
-        const isLocal = url && (url.startsWith('/') || url.includes('localhost'));
-        const reqFn = isLocal
-          ? _localRequest(`http://127.0.0.1:${PORT}${url.startsWith('/') ? url : new URL(url).pathname + new URL(url).search}`, { method, headers, body })
-          : httpsRequest(url, { method: method || 'GET', headers: headers || {}, body: body || undefined });
-        reqFn
-          .then(async (r) => {
-            const respBody = await r.text();
-            const respHdrs = (r.headers && r.headers._raw) ? r.headers._raw : {};
-            if (!clientSocket.destroyed)
-              clientSocket.write(_wsMakeFrame(JSON.stringify({ id, status: r.status, headers: respHdrs, body: respBody })));
-          })
-          .catch((e) => {
-            if (!clientSocket.destroyed)
-              clientSocket.write(_wsMakeFrame(JSON.stringify({ id, error: e.message })));
-          });
-      }
-    });
-    return;
-  }
 
   if (!pathname.startsWith('/supabase/')) {
     clientSocket.destroy();
