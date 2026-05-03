@@ -2,12 +2,16 @@
    MozPay — App Logic
    ============================================ */
 
-const SUPABASE_URL = window.location.origin + '/supabase';
+// Browser connects DIRECTLY to Supabase — no proxy.
+// Routing through the Render/Replit reverse proxy caused ERR_HTTP2_PROTOCOL_ERROR
+// because WebSocket upgrades over HTTP/2 corrupted the shared HTTP/2 session.
+// The server-side /api/wallet, /api/transactions and /api/chat endpoints still
+// use the service-role key on the server, so RLS bypass is preserved where needed.
+const SUPABASE_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
 // Configure Supabase to persist session in localStorage (keep user logged in)
-// storageKey is pinned to the real project ref so the localStorage key never
-// changes even if we route requests through a proxy URL.
+// storageKey is pinned to the real project ref so the localStorage key never changes.
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
     auth: {
         storage: window.localStorage,
@@ -15,18 +19,6 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, 
         autoRefreshToken: true,
         persistSession: true,
         detectSessionInUrl: false
-    },
-    global: {
-        // Strip the redundant `apikey` header before every request.
-        // The server-side proxy injects the service-role key, so sending
-        // the anon-key JWT here is wasteful AND pushes total header size
-        // above Replit's reverse-proxy limit (→ HTTP 431).
-        fetch: (url, options = {}) => {
-            const h = Object.assign({}, options.headers || {});
-            delete h['apikey'];
-            delete h['x-client-info'];
-            return fetch(url, Object.assign({}, options, { headers: h }));
-        }
     }
 });
 
