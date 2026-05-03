@@ -1,0 +1,63 @@
+found and animated.
+app.js?v=24:64  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+window.fetch @ app.js?v=24:64
+await in window.fetch
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=24:64  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_RESET
+window.fetch @ app.js?v=24:64
+await in window.fetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=24:64  GET https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+window.fetch @ app.js?v=24:64
+await in window.fetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=24:64  POST https://fbojmxiwvubepoywdhhc.supabase.co/rest/v1/online_users?on_conflict=user_id net::ERR_CONNECTION_RESET
+window.fetch @ app.js?v=24:64
+await in window.fetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=24:64  PUT https://fbojmxiwvubepoywdhhc.supabase.co/auth/v1/user net::ERR_CONNECTION_CLOSED
+window.fetch @ app.js?v=24:64
+await in window.fetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at window.fetch (app.js?v=24:64:14)
+    at async supabase.js:21:9158
+    at async Sr (supabase.js:21:8900)
+    at async supabase.js:24:9854
+    at async ds._useSession (supabase.js:24:7412)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
