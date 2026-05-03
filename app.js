@@ -2,6 +2,49 @@
    MozPay — App Logic
    ============================================ */
 
+/* ── Global fetch retry wrapper ──────────────────────────────────────────────
+   Render's free tier sleeps after inactivity (~15 min cold-start = ~30 s).
+   Networks with short HTTP/2 stream timeouts (common in Mozambique) also cause
+   ERR_CONNECTION_CLOSED / ERR_HTTP2_PROTOCOL_ERROR on the first few requests.
+   Solution: retry every failed network-level fetch with exponential backoff +
+   random jitter so concurrent requests don't all hammer the server at once.
+   Only network errors trigger retries; HTTP 4xx/5xx responses pass through.
+   ────────────────────────────────────────────────────────────────────────── */
+(function () {
+    const _orig = window.fetch.bind(window);
+    const DELAYS = [1500, 3500, 7000, 14000]; // 1.5 s → 3.5 s → 7 s → 14 s
+    let _banner = null;
+
+    function _showBanner() {
+        if (_banner) return;
+        const fn = () => {
+            if (!document.body) { setTimeout(fn, 80); return; }
+            _banner = document.createElement('div');
+            _banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#f59e0b;color:#000;text-align:center;padding:10px 16px;font-size:14px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.25)';
+            _banner.textContent = 'A ligar ao servidor… aguarda um momento';
+            document.body.prepend(_banner);
+            setTimeout(() => { if (_banner) { _banner.remove(); _banner = null; } }, 40000);
+        };
+        fn();
+    }
+    function _hideBanner() { if (_banner) { _banner.remove(); _banner = null; } }
+
+    window.fetch = async function mozpayFetch(url, opts) {
+        for (let i = 0; ; i++) {
+            try {
+                const r = await _orig(url, opts);
+                if (i > 0) _hideBanner(); // success after retry — hide banner
+                return r;
+            } catch (e) {
+                if (i >= DELAYS.length) { _hideBanner(); throw e; }
+                if (i === 0) _showBanner();
+                const jitter = Math.floor(Math.random() * 800);
+                await new Promise(r => setTimeout(r, DELAYS[i] + jitter));
+            }
+        }
+    };
+})();
+
 // All Supabase traffic is routed through our own server proxy (/supabase/*).
 // This means the browser only needs ONE HTTP/2 connection (to our Render service)
 // instead of opening additional connections to supabase.co.
@@ -117,20 +160,25 @@ window.__mozpayShowMaintenanceScreen = function showMaintenanceScreen() {
     logo.addEventListener('selectstart', (e) => e.preventDefault());
 };
 
+// Deduplicated maintenance check — all callers share one in-flight request.
+// Uses /api/maintenance (server-cached, <5 ms) instead of a direct Supabase
+// query so it doesn't generate extra HTTP/2 streams at startup.
+let _maintPromise = null;
 window.__mozpayCheckMaintenance = async function checkMaintenance() {
     if (window.__mozpayMaintenanceShown) return true;
-    try {
-        const { data: maintenanceSetting } = await supabaseClient
-            .from('system_settings')
-            .select('value')
-            .eq('key', 'maintenance_mode')
-            .single();
-        if (maintenanceSetting && maintenanceSetting.value === 'true') {
-            window.__mozpayShowMaintenanceScreen();
-            return true;
-        }
-    } catch (_) { /* ignore — fail-open so the app stays usable */ }
-    return false;
+    if (!_maintPromise) {
+        _maintPromise = (async () => {
+            try {
+                const r = await fetch('/api/maintenance', { cache: 'no-store' });
+                if (r.ok) {
+                    const d = await r.json();
+                    if (d.maintenance) { window.__mozpayShowMaintenanceScreen(); return true; }
+                }
+            } catch (_) { /* fail-open */ }
+            return false;
+        })();
+    }
+    return _maintPromise;
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
