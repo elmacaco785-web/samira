@@ -1,16 +1,11 @@
 /* ============================================================
-   MozPay — Static Server + SMS Forwarder Webhook
+   MozPay — Static Server
    ============================================================
    - Serves the SPA (HTML/JS/CSS) from this folder.
-   - Exposes POST /api/sms-webhook for the SMS Forwarder app
-     (https://github.com/bogkonstantin/android_income_sms_gateway_webhook
-      or any compatible app) to deliver M-Pesa / E-Mola / mKesh
-      confirmation messages.
-   - The webhook validates a shared secret stored in Supabase
-     (system_settings.sms_webhook_secret) and inserts the raw
-     SMS into the `sms_log` table. The frontend (home.js) reacts
-     in realtime, matches the SMS against the user's pending
-     payment, and credits the wallet / activates the level.
+   - /supabase/* proxy: forwards browser→Supabase via HTTP/1.1.
+   - /ws/api WebSocket tunnel: routes Supabase REST calls over a
+     single HTTP/1.1 WebSocket, bypassing ERR_HTTP2_PROTOCOL_ERROR
+     on networks (e.g. Mozambican mobile) that drop HTTP/2 streams.
    ============================================================ */
 
 const http   = require('http');
@@ -61,7 +56,10 @@ function httpsRequest(url, opts = {}) {
         done(null, {
           status,
           ok: status >= 200 && status < 300,
-          headers: { get: (k) => hdrs[k.toLowerCase()] || null },
+          headers: {
+            get: (k) => hdrs[k.toLowerCase()] || null,
+            _raw: hdrs,
+          },
           text:        () => Promise.resolve(buf.toString('utf8')),
           json:        () => Promise.resolve(JSON.parse(buf.toString('utf8'))),
           arrayBuffer: () => Promise.resolve(Buffer.from(buf)),
@@ -140,42 +138,6 @@ function _cacheTtl(subpath, method) {
   return 15_000;                                                 // 15 s default
 }
 
-/* ────────────────────────────────────────────────────────────
-   Webhook secret cache (read from Supabase, refreshed every 60s)
-   ──────────────────────────────────────────────────────────── */
-let secretCache = { value: null, ts: 0 };
-
-async function fetchWebhookSecret() {
-  const fresh = Date.now() - secretCache.ts < 60_000;
-  if (fresh && secretCache.value) return secretCache.value;
-  try {
-    const r = await httpsRequest(
-      `${SUPABASE_URL}/rest/v1/system_settings?key=eq.sms_webhook_secret&select=value`,
-      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
-    );
-    const data = await r.json();
-    if (Array.isArray(data) && data[0]?.value) {
-      secretCache = { value: String(data[0].value), ts: Date.now() };
-      return secretCache.value;
-    }
-  } catch (e) { console.warn('[sms-webhook] could not fetch secret:', e.message); }
-  return null;
-}
-
-async function insertSmsLog(payload) {
-  const r = await httpsRequest(`${SUPABASE_URL}/rest/v1/sms_log`, {
-    method: 'POST',
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      'Content-Type': 'application/json',
-      Prefer: 'return=representation',
-    },
-    body: JSON.stringify([payload]),
-  });
-  const txt = await r.text();
-  return { ok: r.ok, status: r.status, body: txt };
-}
 
 /* ────────────────────────────────────────────────────────────
    Helpers
@@ -314,67 +276,6 @@ function serveFile(res, filePath, statusCode) {
   });
 }
 
-/* ────────────────────────────────────────────────────────────
-   API: POST /api/sms-webhook
-   ────────────────────────────────────────────────────────────
-   Accepted payload shapes (we are tolerant of different SMS
-   Forwarder apps):
-     1) { from, text, sentStamp }                  ← bogkonstantin
-     2) { from, body, timestamp }                  ← generic
-     3) { sender, message, receivedAt }            ← alt
-   Required:
-     - Either "X-Webhook-Secret" header OR ?secret=… query string
-       must equal the value stored in system_settings.sms_webhook_secret.
-   ──────────────────────────────────────────────────────────── */
-async function handleSmsWebhook(req, res, urlObj) {
-  let raw;
-  try { raw = await readBody(req); } catch (e) { return jsonResponse(res, 413, { ok:false, error:'body too large' }); }
-
-  let payload = {};
-  try { payload = raw ? JSON.parse(raw) : {}; }
-  catch { /* allow form-encoded/empty */
-    try {
-      const params = new URLSearchParams(raw);
-      payload = Object.fromEntries(params.entries());
-    } catch {}
-  }
-
-  const sentSecret = req.headers['x-webhook-secret'] ||
-                     urlObj.searchParams.get('secret') ||
-                     payload.secret ||
-                     '';
-  const expected = await fetchWebhookSecret();
-  if (!expected) {
-    console.warn('[sms-webhook] no secret configured in system_settings — refusing request');
-    return jsonResponse(res, 503, { ok:false, error:'webhook not configured' });
-  }
-  if (!sentSecret || String(sentSecret) !== expected) {
-    return jsonResponse(res, 401, { ok:false, error:'invalid secret' });
-  }
-
-  const from = payload.from ?? payload.sender ?? payload.address ?? '';
-  const body = payload.text ?? payload.body  ?? payload.message ?? '';
-  const stamp = payload.sentStamp ?? payload.timestamp ?? payload.receivedAt ?? Date.now();
-
-  if (!from && !body) {
-    return jsonResponse(res, 400, { ok:false, error:'missing from/body' });
-  }
-
-  const row = {
-    raw_from: String(from).slice(0, 64),
-    raw_body: String(body).slice(0, 2000),
-    received_at: new Date(typeof stamp === 'number' ? stamp : Date.parse(stamp) || Date.now()).toISOString(),
-    raw_payload: payload,
-  };
-
-  const result = await insertSmsLog(row);
-  if (!result.ok) {
-    console.error('[sms-webhook] supabase insert failed:', result.status, result.body);
-    return jsonResponse(res, 502, { ok:false, error:'persist failed', detail: result.body });
-  }
-  console.log(`[sms-webhook] stored SMS from "${row.raw_from}" (${row.raw_body.length} chars)`);
-  return jsonResponse(res, 200, { ok:true });
-}
 
 /* ────────────────────────────────────────────────────────────
    API: Chat proxy (works for anonymous + authenticated users)
@@ -648,12 +549,10 @@ async function handleTransactionPost(req, res) {
    API: GET /api/health
    ──────────────────────────────────────────────────────────── */
 async function handleHealth(_req, res) {
-  const secret = await fetchWebhookSecret();
   jsonResponse(res, 200, {
     ok: true,
     service: 'mozpay-static-server',
-    version: 'v3-https-fixed',
-    sms_webhook_configured: !!secret,
+    version: 'v4-ws-tunnel',
     port: PORT,
     time: new Date().toISOString(),
   });
@@ -678,11 +577,6 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  if (pathname === '/api/sms-webhook' && req.method === 'POST') {
-    try { await handleSmsWebhook(req, res, urlObj); }
-    catch (e) { console.error('[sms-webhook] handler error:', e); jsonResponse(res, 500, { ok:false, error:'internal' }); }
-    return;
-  }
   if (pathname === '/api/health' && req.method === 'GET') {
     try { await handleHealth(req, res); }
     catch (e) { jsonResponse(res, 500, { ok:false, error:'internal' }); }
@@ -755,7 +649,6 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`MozPay static server running on port ${PORT}`);
-  console.log(`SMS webhook endpoint: POST /api/sms-webhook  (header X-Webhook-Secret)`);
   // Pre-warm caches immediately so the FIRST browser request is served from memory
   // (avoids ~400 ms Supabase round-trip that triggers ERR_HTTP2_PROTOCOL_ERROR on
   // networks with short HTTP/2 stream timeouts).
@@ -794,7 +687,92 @@ server.listen(PORT, '0.0.0.0', () => {
 });
 
 /* ────────────────────────────────────────────────────────────
-   WebSocket proxy — tunnels wss://<replit>/supabase/realtime/*
+   _localRequest — HTTP/1.1 request to localhost (used by
+   WebSocket tunnel to proxy /api/* calls to our own server).
+   ──────────────────────────────────────────────────────────── */
+function _localRequest(url, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const bodyBuf = opts.body ? Buffer.from(String(opts.body)) : null;
+    const reqOpts = {
+      hostname: '127.0.0.1',
+      port: PORT,
+      path: u.pathname + u.search,
+      method: opts.method || 'GET',
+      headers: Object.assign({}, opts.headers || {}),
+    };
+    if (bodyBuf) reqOpts.headers['content-length'] = String(bodyBuf.length);
+    const req = http.request(reqOpts, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => {
+        const buf = Buffer.concat(chunks);
+        const status = res.statusCode || 0;
+        const hdrs = res.headers || {};
+        resolve({
+          status, ok: status >= 200 && status < 300,
+          headers: { get: (k) => hdrs[k.toLowerCase()] || null, _raw: hdrs },
+          text: () => Promise.resolve(buf.toString('utf8')),
+          json: () => Promise.resolve(JSON.parse(buf.toString('utf8'))),
+        });
+      });
+      res.on('error', reject);
+    });
+    req.on('error', reject);
+    req.setTimeout(30000, () => req.destroy(new Error('local request timeout')));
+    if (bodyBuf) req.write(bodyBuf);
+    req.end();
+  });
+}
+
+/* ────────────────────────────────────────────────────────────
+   WebSocket API tunnel — /ws/api
+   Lets the browser send Supabase REST requests over a single
+   HTTP/1.1 WebSocket connection instead of HTTP/2 fetch calls.
+   This completely bypasses ERR_HTTP2_PROTOCOL_ERROR on networks
+   that drop HTTP/2 streams (common on Mozambican mobile data).
+
+   Protocol: browser sends JSON text frames:
+     { id, method, url, headers, body }
+   Server replies with JSON text frames:
+     { id, status, headers, body }  or  { id, error }
+   ──────────────────────────────────────────────────────────── */
+function _wsParseFrame(buf) {
+  if (buf.length < 2) return null;
+  const masked = (buf[1] & 0x80) !== 0;
+  let len = buf[1] & 0x7f, offset = 2;
+  if (len === 126) {
+    if (buf.length < 4) return null;
+    len = buf.readUInt16BE(2); offset = 4;
+  } else if (len === 127) {
+    if (buf.length < 10) return null;
+    len = Number(buf.readBigUInt64BE(2)); offset = 10;
+  }
+  if (buf.length < offset + (masked ? 4 : 0) + len) return null;
+  let payload;
+  if (masked) {
+    const mask = buf.slice(offset, offset + 4);
+    payload = Buffer.from(buf.slice(offset + 4, offset + 4 + len));
+    for (let i = 0; i < payload.length; i++) payload[i] ^= mask[i % 4];
+    offset += 4;
+  } else {
+    payload = buf.slice(offset, offset + len);
+  }
+  return { opcode: buf[0] & 0x0f, payload, consumed: offset + len };
+}
+
+function _wsMakeFrame(text) {
+  const data = Buffer.from(text);
+  const len = data.length;
+  let hdr;
+  if (len < 126)        { hdr = Buffer.from([0x81, len]); }
+  else if (len < 65536) { hdr = Buffer.alloc(4); hdr[0] = 0x81; hdr[1] = 126; hdr.writeUInt16BE(len, 2); }
+  else                  { hdr = Buffer.alloc(10); hdr[0] = 0x81; hdr[1] = 127; hdr.writeBigUInt64BE(BigInt(len), 2); }
+  return Buffer.concat([hdr, data]);
+}
+
+/* ────────────────────────────────────────────────────────────
+   WebSocket proxy — tunnels wss://<host>/supabase/realtime/*
    through to Supabase Realtime using TLS, so the browser's
    Supabase Realtime client works without direct WS access.
    ──────────────────────────────────────────────────────────── */
@@ -803,6 +781,50 @@ const SUPA_HOST = 'fbojmxiwvubepoywdhhc.supabase.co';
 server.on('upgrade', (req, clientSocket, head) => {
   const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = urlObj.pathname;
+
+  /* ── /ws/api — REST-over-WebSocket tunnel ── */
+  if (pathname === '/ws/api') {
+    const key = req.headers['sec-websocket-key'] || '';
+    const accept = crypto.createHash('sha1')
+      .update(key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11')
+      .digest('base64');
+    clientSocket.write(
+      'HTTP/1.1 101 Switching Protocols\r\n' +
+      'Upgrade: websocket\r\nConnection: Upgrade\r\n' +
+      `Sec-WebSocket-Accept: ${accept}\r\n\r\n`
+    );
+    clientSocket.on('error', () => {});
+    let wsBuf = (head && head.length) ? Buffer.from(head) : Buffer.alloc(0);
+    clientSocket.on('data', (chunk) => {
+      wsBuf = Buffer.concat([wsBuf, chunk]);
+      let frame;
+      while ((frame = _wsParseFrame(wsBuf)) !== null) {
+        wsBuf = wsBuf.slice(frame.consumed);
+        if (frame.opcode === 0x8) { clientSocket.destroy(); return; }
+        if (frame.opcode !== 0x1) continue;
+        let msg;
+        try { msg = JSON.parse(frame.payload.toString()); } catch { continue; }
+        const { id, method, url, headers, body } = msg;
+        // Route local /api/* paths via HTTP to localhost; everything else via HTTPS
+        const isLocal = url && (url.startsWith('/') || url.includes('localhost'));
+        const reqFn = isLocal
+          ? _localRequest(`http://127.0.0.1:${PORT}${url.startsWith('/') ? url : new URL(url).pathname + new URL(url).search}`, { method, headers, body })
+          : httpsRequest(url, { method: method || 'GET', headers: headers || {}, body: body || undefined });
+        reqFn
+          .then(async (r) => {
+            const respBody = await r.text();
+            const respHdrs = (r.headers && r.headers._raw) ? r.headers._raw : {};
+            if (!clientSocket.destroyed)
+              clientSocket.write(_wsMakeFrame(JSON.stringify({ id, status: r.status, headers: respHdrs, body: respBody })));
+          })
+          .catch((e) => {
+            if (!clientSocket.destroyed)
+              clientSocket.write(_wsMakeFrame(JSON.stringify({ id, error: e.message })));
+          });
+      }
+    });
+    return;
+  }
 
   if (!pathname.startsWith('/supabase/')) {
     clientSocket.destroy();
