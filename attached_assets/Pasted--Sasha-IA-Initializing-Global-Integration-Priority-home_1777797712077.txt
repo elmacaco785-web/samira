@@ -1,0 +1,564 @@
+ Sasha IA: Initializing Global Integration (Priority)...
+home.js?v=26:4715 ✅ Sasha IA: 3 chatbot instances found and animated.
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/settings/ads net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+loadAdScripts @ home.js?v=26:167
+showHomeBannerAd @ home.js?v=26:195
+(anonymous) @ home.js?v=26:1022Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/settings/ads net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadAdScripts @ home.js?v=26:167
+showHomeBannerAd @ home.js?v=26:195
+(anonymous) @ home.js?v=26:1022Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/settings/ads net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadAdScripts @ home.js?v=26:167
+showHomeBannerAd @ home.js?v=26:195
+(anonymous) @ home.js?v=26:1022Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_RESET
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at mozpayFetch (app.js?v=21:35:33)
+    at async supabase.js:21:9158
+    at async Sr (supabase.js:21:8900)
+    at async supabase.js:24:9854
+    at async ds._useSession (supabase.js:24:7412)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:262Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+(anonymous) @ home.js?v=26:400
+setTimeout
+saveInvestmentState @ home.js?v=26:399
+getAllMissions @ home.js?v=26:1154
+renderActiveMissions @ home.js?v=26:1161
+(anonymous) @ home.js?v=26:1751
+setTimeout
+(anonymous) @ home.js?v=26:1741
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:1732
+(anonymous) @ home.js?v=26:2437Understand this error
+app.js?v=21:35  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:2399
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:2390
+(anonymous) @ home.js?v=26:2437Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+(anonymous) @ home.js?v=26:400
+setTimeout
+saveInvestmentState @ home.js?v=26:399
+getAllMissions @ home.js?v=26:1154
+renderActiveMissions @ home.js?v=26:1161
+(anonymous) @ home.js?v=26:1751
+setTimeout
+(anonymous) @ home.js?v=26:1741
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:1732
+(anonymous) @ home.js?v=26:2437Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:262Understand this error
+app.js?v=21:35  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:2399
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:2390
+(anonymous) @ home.js?v=26:2437Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24Understand this error
+app.js?v=21:35  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24Understand this error
+app.js?v=21:35  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at mozpayFetch (app.js?v=21:35:33)
+    at async supabase.js:21:9158
+    at async Sr (supabase.js:21:8900)
+    at async supabase.js:24:9854
+    at async ds._useSession (supabase.js:24:7412)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+    at async supabase.js:24:6736
+Sr @ supabase.js:21Understand this error
+app.js?v=21:35  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+(anonymous) @ home.js?v=26:400
+setTimeout
+saveInvestmentState @ home.js?v=26:399
+getAllMissions @ home.js?v=26:1154
+renderActiveMissions @ home.js?v=26:1161
+(anonymous) @ home.js?v=26:4673Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_RESET
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=21:35  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+await in (anonymous)
+_acquireLock @ supabase.js:24
+updateUser @ supabase.js:24
+await in updateUser
+(anonymous) @ home.js?v=26:400
+setTimeout
+saveInvestmentState @ home.js?v=26:399
+getAllMissions @ home.js?v=26:1154
+renderActiveMissions @ home.js?v=26:1161
+(anonymous) @ home.js?v=26:4673Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/wallets?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
+mozpayFetch @ app.js?v=21:35
+await in mozpayFetch
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20Understand this error
+app.js?v=21:35  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id%2Ctitle%2Cmessage%2Cuser_id%2Ccreated_at&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=20 net::ERR_CONNECTION_CLOSED
