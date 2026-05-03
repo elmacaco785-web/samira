@@ -2,83 +2,31 @@
    MozPay — App Logic
    ============================================ */
 
-/* ── WebSocket API tunnel ─────────────────────────────────────────────────────
-   Networks in Mozambique (and some other regions) block HTTP/2 streams,
-   causing ERR_HTTP2_PROTOCOL_ERROR / ERR_CONNECTION_CLOSED on ALL API calls.
-   WebSocket uses HTTP/1.1 upgrade — a single persistent TCP connection that
-   mobile middleboxes allow even when they break HTTP/2 multiplexing.
-   This wrapper intercepts all fetch() calls to supabase.co and sends them
-   through our /ws/api tunnel, which proxies to Supabase via HTTP/1.1.
-   Falls back to native fetch if the WebSocket is unavailable.
-   ──────────────────────────────────────────────────────────────────────────── */
-(function () {
-  const _orig = window.fetch.bind(window);
-  let _ws = null, _wsProm = null, _pending = {}, _msgId = 0, _failedAt = 0;
-
-  function _connect() {
-    if (_ws && _ws.readyState === WebSocket.OPEN) return Promise.resolve(_ws);
-    if (_wsProm) return _wsProm;
-    if (Date.now() - _failedAt < 12000) return Promise.reject(new Error('ws cooldown'));
-    _wsProm = new Promise((resolve, reject) => {
-      try {
-        const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const ws = new WebSocket(`${proto}//${location.host}/ws/api`);
-        const t = setTimeout(() => { ws.close(); }, 10000);
-        ws.onopen  = () => { clearTimeout(t); _ws = ws; _wsProm = null; resolve(ws); };
-        ws.onerror = () => { clearTimeout(t); _failedAt = Date.now(); _ws = null; _wsProm = null; reject(new Error('ws error')); };
-        ws.onclose = () => { _ws = null; _wsProm = null; };
-        ws.onmessage = (e) => {
-          try { const d = JSON.parse(e.data); const cb = _pending[d.id]; if (cb) { delete _pending[d.id]; cb(d); } } catch {}
-        };
-      } catch (e) { _wsProm = null; reject(e); }
-    });
-    return _wsProm;
-  }
-
-  window.fetch = async function (url, opts) {
-    opts = opts || {};
-    const s = url && url.toString ? url.toString() : String(url);
-    // Skip: WebSocket upgrade itself, CDN resources (jsdelivr etc.), and blob URLs
-    if (s.includes('/ws/api') || s.startsWith('blob:') ||
-        (!s.includes('supabase.co') && !s.includes(location.host) && !s.startsWith('/'))) {
-      return _orig(url, opts);
-    }
-    try {
-      const ws = await _connect();
-      const id = ++_msgId;
-      const rawH = opts.headers || {};
-      const headers = {};
-      if (typeof rawH.entries === 'function') { for (const [k, v] of rawH.entries()) headers[k] = v; }
-      else { Object.assign(headers, rawH); }
-      const body = opts.body != null ? String(opts.body) : null;
-      return await new Promise((resolve, reject) => {
-        const t = setTimeout(() => { delete _pending[id]; reject(new Error('ws timeout')); }, 30000);
-        _pending[id] = (d) => {
-          clearTimeout(t);
-          if (d.error) { reject(new TypeError('Failed to fetch')); return; }
-          resolve(new Response(d.body || '', { status: d.status || 200, headers: d.headers || {} }));
-        };
-        ws.send(JSON.stringify({ id, method: opts.method || 'GET', url: s, headers, body }));
-      });
-    } catch {
-      return _orig(url, opts);
-    }
-  };
-})();
-
-// Supabase calls go directly to supabase.co (AWS infrastructure).
+// All Supabase traffic goes through our server proxy (/supabase/*).
+// This avoids direct browser→supabase.co connections which fail on
+// Mozambican mobile networks with ERR_HTTP2_PROTOCOL_ERROR.
+// The server proxy uses HTTP/1.1 which all networks support.
 const SUPABASE_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
-// Configure Supabase to persist session in localStorage (keep user logged in)
-// storageKey is pinned to the real project ref so the localStorage key never changes.
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+// Proxy base URL — relative so it works on any domain (Render, local, etc.)
+const _PROXY_BASE = '/supabase';
+
+// Configure Supabase to route through our server proxy.
+// storageKey pinned to real project ref so localStorage key never changes.
+const supabaseClient = window.supabase.createClient(_PROXY_BASE, SUPABASE_KEY, {
     auth: {
         storage: window.localStorage,
         storageKey: 'sb-fbojmxiwvubepoywdhhc-auth-token',
         autoRefreshToken: true,
         persistSession: true,
         detectSessionInUrl: false
+    },
+    global: {
+        headers: { 'x-client-info': 'mozpay/1.0' }
+    },
+    realtime: {
+        params: { apikey: SUPABASE_KEY }
     }
 });
 
