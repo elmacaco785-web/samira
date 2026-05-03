@@ -804,6 +804,10 @@ server.on('upgrade', (req, clientSocket, head) => {
         if (frame.opcode !== 0x1) continue;
         let msg;
         try { msg = JSON.parse(frame.payload.toString()); } catch { continue; }
+        if (msg.ping) {
+          if (!clientSocket.destroyed) clientSocket.write(_wsMakeFrame(JSON.stringify({ pong: true })));
+          continue;
+        }
         const { id, method, url, headers, body } = msg;
         // Route local /api/* paths via HTTP to localhost; everything else via HTTPS
         const isLocal = url && (url.startsWith('/') || url.includes('localhost'));
