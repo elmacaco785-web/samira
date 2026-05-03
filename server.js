@@ -14,10 +14,57 @@
    ============================================================ */
 
 const http   = require('http');
+const https  = require('https');
 const tls    = require('tls');
 const fs     = require('fs');
 const path   = require('path');
 const crypto = require('crypto');
+
+/* ────────────────────────────────────────────────────────────
+   httpsRequest — fetch() replacement that forces HTTP/1.1.
+   Node.js 18+ fetch (undici) negotiates HTTP/2, which fails
+   behind Replit and Render reverse proxies. Using the native
+   https module always uses HTTP/1.1 and works everywhere.
+   ──────────────────────────────────────────────────────────── */
+function httpsRequest(url, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const bodyBuf = opts.body
+      ? (Buffer.isBuffer(opts.body) ? opts.body : Buffer.from(opts.body))
+      : null;
+    const reqOpts = {
+      hostname: u.hostname,
+      port: u.port || 443,
+      path: u.pathname + u.search,
+      method: opts.method || 'GET',
+      headers: Object.assign({}, opts.headers || {}),
+    };
+    if (bodyBuf) {
+      reqOpts.headers['Content-Length'] = String(bodyBuf.length);
+    }
+    const req = https.request(reqOpts, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => {
+        const buf = Buffer.concat(chunks);
+        const status = res.statusCode || 0;
+        const hdrs = res.headers || {};
+        resolve({
+          status,
+          ok: status >= 200 && status < 300,
+          headers: { get: (k) => hdrs[k.toLowerCase()] || null },
+          text:        () => Promise.resolve(buf.toString('utf8')),
+          json:        () => Promise.resolve(JSON.parse(buf.toString('utf8'))),
+          arrayBuffer: () => Promise.resolve(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)),
+        });
+      });
+    });
+    req.on('error', reject);
+    req.setTimeout(25000, () => { req.destroy(new Error('httpsRequest timeout')); });
+    if (bodyBuf) req.write(bodyBuf);
+    req.end();
+  });
+}
 
 const PORT = 5000;
 const ROOT = __dirname;
@@ -58,7 +105,7 @@ async function fetchWebhookSecret() {
   const fresh = Date.now() - secretCache.ts < 60_000;
   if (fresh && secretCache.value) return secretCache.value;
   try {
-    const r = await fetch(
+    const r = await httpsRequest(
       `${SUPABASE_URL}/rest/v1/system_settings?key=eq.sms_webhook_secret&select=value`,
       { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
     );
@@ -72,7 +119,7 @@ async function fetchWebhookSecret() {
 }
 
 async function insertSmsLog(payload) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/sms_log`, {
+  const r = await httpsRequest(`${SUPABASE_URL}/rest/v1/sms_log`, {
     method: 'POST',
     headers: {
       apikey: SUPABASE_ANON_KEY,
@@ -143,7 +190,7 @@ async function handleSupabaseProxy(req, res, subpath, urlObj) {
   }
 
   try {
-    const upRes = await fetch(upstream, {
+    const upRes = await httpsRequest(upstream, {
       method: req.method,
       headers: fwdHeaders,
       body: bodyBuf || undefined,
@@ -266,7 +313,7 @@ function requireServiceKey(res) {
 }
 
 async function supaFetch(path, opts = {}) {
-  return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+  return httpsRequest(`${SUPABASE_URL}/rest/v1/${path}`, {
     ...opts,
     headers: {
       apikey: SUPABASE_SERVICE_KEY,
@@ -388,7 +435,7 @@ function handleChatTypingGet(_req, res, urlObj) {
    ──────────────────────────────────────────────────────────── */
 async function handleAdsSettings(_req, res) {
   try {
-    const r = await fetch(
+    const r = await httpsRequest(
       `${SUPABASE_URL}/rest/v1/system_settings?key=in.(ads_script_adsview,ads_script_home)&select=key,value`,
       { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
     );
@@ -441,7 +488,7 @@ async function supaFetchAsUser(path, userToken, opts = {}) {
   const authHeader = SUPABASE_SERVICE_KEY
     ? `Bearer ${SUPABASE_SERVICE_KEY}`
     : `Bearer ${userToken}`;
-  return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+  return httpsRequest(`${SUPABASE_URL}/rest/v1/${path}`, {
     ...opts,
     headers: {
       apikey: apiKey,

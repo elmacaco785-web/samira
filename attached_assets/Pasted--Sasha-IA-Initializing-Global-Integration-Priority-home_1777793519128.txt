@@ -1,0 +1,150 @@
+🤖 Sasha IA: Initializing Global Integration (Priority)...
+home.js?v=26:4715 ✅ Sasha IA: 3 chatbot instances found and animated.
+app.js?v=18:28  POST https://samira-6nkl.onrender.com/supabase/rest/v1/online_users?on_conflict=user_id net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+updateOnlinePresence @ home.js?v=26:323
+(anonymous) @ home.js?v=26:328Understand this error
+app.js?v=18:28  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=18:28  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+home.js?v=26:493  GET https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+loadUserData @ home.js?v=26:493
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=18:28  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at fetch (app.js?v=18:28:20)
+    at supabase.js:21:2856
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+app.js?v=18:28  GET https://samira-6nkl.onrender.com/supabase/rest/v1/notifications?select=id&or=%28user_id.eq.a52be3f4-0224-420e-a43e-89460ecca8c5%2Cuser_id.is.null%29&order=created_at.desc&limit=50 net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:262Understand this error
+app.js?v=18:28  GET https://samira-6nkl.onrender.com/supabase/rest/v1/system_settings?select=key%2Cvalue&key=like.payment_%25 net::ERR_CONNECTION_CLOSED
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+await in (anonymous)
+then @ supabase.js:1Understand this error
+home.js?v=26:559  GET https://samira-6nkl.onrender.com/api/transactions net::ERR_CONNECTION_CLOSED
+loadUserData @ home.js?v=26:559
+await in loadUserData
+(anonymous) @ home.js?v=26:617Understand this error
+app.js?v=18:28  HEAD https://samira-6nkl.onrender.com/supabase/rest/v1/user_preferences?select=user_id&invited_by=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 net::ERR_HTTP2_PROTOCOL_ERROR
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1
+setTimeout
+(anonymous) @ home.js?v=26:2399
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:2390
+(anonymous) @ home.js?v=26:2437Understand this error
+home.js?v=26:461  PATCH https://samira-6nkl.onrender.com/api/wallet net::ERR_CONNECTION_CLOSED
+syncWalletToDB @ home.js?v=26:461
+buildPainelHTML @ home.js?v=26:1873
+(anonymous) @ home.js?v=26:2403
+setTimeout
+(anonymous) @ home.js?v=26:2399
+(anonymous) @ home.js?v=26:2827
+setTimeout
+handleTabWithLoader @ home.js?v=26:2824
+(anonymous) @ home.js?v=26:2390
+(anonymous) @ home.js?v=26:2437Understand this error
+app.js?v=18:28  GET https://samira-6nkl.onrender.com/supabase/rest/v1/transactions?select=*&user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5&order=created_at.desc net::ERR_CONNECTION_CLOSED
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=18:28  PATCH https://samira-6nkl.onrender.com/supabase/rest/v1/wallets?user_id=eq.a52be3f4-0224-420e-a43e-89460ecca8c5 400 (Bad Request)
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:20
+(anonymous) @ supabase.js:20
+await in (anonymous)
+(anonymous) @ supabase.js:1
+then @ supabase.js:1Understand this error
+app.js?v=18:28  PUT https://samira-6nkl.onrender.com/supabase/auth/v1/user net::ERR_CONNECTION_CLOSED
+fetch @ app.js?v=18:28
+(anonymous) @ supabase.js:21
+Sr @ supabase.js:21
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
+supabase.js:21 TypeError: Failed to fetch
+    at fetch (app.js?v=18:28:20)
+    at supabase.js:21:2856
+    at supabase.js:21:9166
+    at Sr (supabase.js:21:8908)
+    at supabase.js:24:9863
+    at ds._useSession (supabase.js:24:7425)
+    at async ds._updateUser (supabase.js:24:9621)
+    at async supabase.js:24:9553
+Sr @ supabase.js:21
+await in Sr
+Sr @ supabase.js:21
+(anonymous) @ supabase.js:24
+_useSession @ supabase.js:24
+await in _useSession
+_updateUser @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:24
+(anonymous) @ supabase.js:21Understand this error
