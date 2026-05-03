@@ -30,7 +30,7 @@ function httpsRequest(url, opts = {}) {
   return new Promise((resolve, reject) => {
     const u = new URL(url);
     const bodyBuf = opts.body
-      ? (Buffer.isBuffer(opts.body) ? opts.body : Buffer.from(opts.body))
+      ? (Buffer.isBuffer(opts.body) ? opts.body : Buffer.from(String(opts.body)))
       : null;
     const reqOpts = {
       hostname: u.hostname,
@@ -42,31 +42,42 @@ function httpsRequest(url, opts = {}) {
     if (bodyBuf) {
       reqOpts.headers['Content-Length'] = String(bodyBuf.length);
     }
+
+    let settled = false;
+    function done(err, val) {
+      if (settled) return;
+      settled = true;
+      if (err) reject(err); else resolve(val);
+    }
+
     const req = https.request(reqOpts, (res) => {
       const chunks = [];
       res.on('data', c => chunks.push(c));
+      res.on('error', (e) => done(e));
       res.on('end', () => {
         const buf = Buffer.concat(chunks);
         const status = res.statusCode || 0;
         const hdrs = res.headers || {};
-        resolve({
+        done(null, {
           status,
           ok: status >= 200 && status < 300,
           headers: { get: (k) => hdrs[k.toLowerCase()] || null },
           text:        () => Promise.resolve(buf.toString('utf8')),
           json:        () => Promise.resolve(JSON.parse(buf.toString('utf8'))),
-          arrayBuffer: () => Promise.resolve(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)),
+          arrayBuffer: () => Promise.resolve(Buffer.from(buf)),
         });
       });
     });
-    req.on('error', reject);
-    req.setTimeout(25000, () => { req.destroy(new Error('httpsRequest timeout')); });
+    req.on('error', (e) => done(e));
+    req.setTimeout(25000, () => {
+      req.destroy(new Error('httpsRequest timeout after 25s'));
+    });
     if (bodyBuf) req.write(bodyBuf);
     req.end();
   });
 }
 
-const PORT = 5000;
+const PORT = parseInt(process.env.PORT || '5000', 10);
 const ROOT = __dirname;
 
 // Public Supabase config — same anon key the frontend uses.
@@ -572,7 +583,9 @@ async function handleHealth(_req, res) {
   jsonResponse(res, 200, {
     ok: true,
     service: 'mozpay-static-server',
+    version: 'v3-https-fixed',
     sms_webhook_configured: !!secret,
+    port: PORT,
     time: new Date().toISOString(),
   });
 }
@@ -749,4 +762,14 @@ server.on('upgrade', (req, clientSocket, head) => {
   });
 
   clientSocket.on('error', () => upSocket.destroy());
+});
+
+// ── Global safety net ──────────────────────────────────────────────────────
+// Prevent the process from crashing on unhandled errors (stream errors,
+// httpsRequest edge-cases, etc.). Log and keep serving.
+process.on('uncaughtException', (err) => {
+  console.error('[uncaughtException]', err.message, err.stack);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[unhandledRejection]', reason);
 });
