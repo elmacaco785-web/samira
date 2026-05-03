@@ -108,6 +108,39 @@ const MIME_TYPES = {
 };
 
 /* ────────────────────────────────────────────────────────────
+   Generic GET response cache (keyed by method+url+auth-token)
+   Avoids slow Supabase round-trips that trigger ERR_HTTP2_PROTOCOL_ERROR
+   on networks with short HTTP/2 stream timeouts (~200 ms).
+   ──────────────────────────────────────────────────────────── */
+const _respCache = new Map(); // key => { status, headers, body: Buffer, ts, ttl }
+
+function _getCached(key) {
+  const e = _respCache.get(key);
+  if (!e) return null;
+  if (Date.now() - e.ts > e.ttl) { _respCache.delete(key); return null; }
+  return e;
+}
+function _setCached(key, status, headers, body, ttl) {
+  _respCache.set(key, { status, headers, body, ts: Date.now(), ttl });
+  if (_respCache.size > 1000) {
+    const oldest = _respCache.keys().next().value;
+    _respCache.delete(oldest);
+  }
+}
+
+// TTL per supabase subpath prefix (ms). 0 = do not cache.
+function _cacheTtl(subpath, method) {
+  if (method !== 'GET' && method !== 'HEAD') return 0;
+  if (subpath.startsWith('auth/')) return 0;                    // never cache auth
+  if (subpath.includes('system_settings')) return 60_000;       // 60 s
+  if (subpath.includes('notifications'))   return 10_000;       // 10 s
+  if (subpath.includes('wallets'))         return 10_000;       // 10 s
+  if (subpath.includes('user_preferences')) return 30_000;      // 30 s
+  if (subpath.includes('online_users'))    return 0;            // never — presence
+  return 15_000;                                                 // 15 s default
+}
+
+/* ────────────────────────────────────────────────────────────
    Webhook secret cache (read from Supabase, refreshed every 60s)
    ──────────────────────────────────────────────────────────── */
 let secretCache = { value: null, ts: 0 };
@@ -198,6 +231,36 @@ async function handleSupabaseProxy(req, res, subpath, urlObj) {
   // Preserve PostgREST/GoTrue-specific headers
   for (const h of ['prefer', 'x-supabase-api-version', 'range', 'x-client-info']) {
     if (req.headers[h]) fwdHeaders[h] = req.headers[h];
+  }
+
+  // Check cache for GET/HEAD requests
+  const ttl = _cacheTtl(subpath, req.method);
+  if (ttl > 0) {
+    const cacheKey = req.method + ':' + upstream + ':' + (fwdHeaders['Authorization'] || '');
+    const hit = _getCached(cacheKey);
+    if (hit) {
+      setCors(res);
+      res.writeHead(hit.status, hit.headers);
+      res.end(hit.body);
+      return;
+    }
+    // Cache miss — fetch and store
+    try {
+      const upRes = await httpsRequest(upstream, { method: req.method, headers: fwdHeaders });
+      const resHeaders = { 'Content-Type': upRes.headers.get('content-type') || 'application/json' };
+      for (const h of ['content-range', 'x-total-count', 'location']) {
+        const v = upRes.headers.get(h); if (v) resHeaders[h] = v;
+      }
+      const body = Buffer.from(await upRes.arrayBuffer());
+      if (upRes.ok) _setCached(cacheKey, upRes.status, resHeaders, body, ttl);
+      setCors(res);
+      res.writeHead(upRes.status, resHeaders);
+      res.end(body);
+    } catch (e) {
+      console.error('[supabase-proxy] upstream error:', e.message, '| path:', subpath);
+      jsonResponse(res, 502, { message: 'proxy error: ' + e.message, code: 'PROXY_ERROR' });
+    }
+    return;
   }
 
   try {
@@ -443,17 +506,23 @@ function handleChatTypingGet(_req, res, urlObj) {
 /* ────────────────────────────────────────────────────────────
    API: GET /api/settings/ads — ad scripts (Adsterra/Ezoic)
    Public read of system_settings entries used by the front-end.
+   Cached for 5 minutes to avoid slow Supabase round-trips.
    ──────────────────────────────────────────────────────────── */
+let _adsCache = { val: null, ts: 0 };
 async function handleAdsSettings(_req, res) {
+  if (_adsCache.val && Date.now() - _adsCache.ts < 300_000) {
+    return jsonResponse(res, 200, _adsCache.val);
+  }
   try {
     const r = await httpsRequest(
       `${SUPABASE_URL}/rest/v1/system_settings?key=in.(ads_script_adsview,ads_script_home)&select=key,value`,
       { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
     );
     const arr = await r.json();
-    const out = { ads_script_adsview: '', ads_script_home: '' };
+    const out = { ok: true, ads_script_adsview: '', ads_script_home: '' };
     if (Array.isArray(arr)) arr.forEach(row => { if (row && row.key in out) out[row.key] = String(row.value || ''); });
-    return jsonResponse(res, 200, { ok:true, ...out });
+    _adsCache = { val: out, ts: Date.now() };
+    return jsonResponse(res, 200, out);
   } catch (e) {
     return jsonResponse(res, 500, { ok:false, error: e.message });
   }
@@ -687,6 +756,41 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`MozPay static server running on port ${PORT}`);
   console.log(`SMS webhook endpoint: POST /api/sms-webhook  (header X-Webhook-Secret)`);
+  // Pre-warm caches immediately so the FIRST browser request is served from memory
+  // (avoids ~400 ms Supabase round-trip that triggers ERR_HTTP2_PROTOCOL_ERROR on
+  // networks with short HTTP/2 stream timeouts).
+  setTimeout(async () => {
+    // Use same key the proxy uses (service key for REST, anon for auth)
+    const svcKey = SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY;
+    const h = { apikey: svcKey, Authorization: `Bearer ${svcKey}`, 'Content-Type': 'application/json' };
+    const warmQueries = [
+      'rest/v1/system_settings?select=key,value&key=like.payment_%25',
+      'rest/v1/system_settings?select=value&key=eq.maintenance_mode',
+      'rest/v1/system_settings?select=key,value&key=in.(ads_script_adsview,ads_script_home)',
+      'rest/v1/system_settings?select=key,value',
+    ];
+    for (const q of warmQueries) {
+      try {
+        const url = `${SUPABASE_URL}/${q}`;
+        const r = await httpsRequest(url, { headers: h });
+        const body = Buffer.from(await r.arrayBuffer());
+        const resHeaders = { 'Content-Type': r.headers.get('content-type') || 'application/json' };
+        // Cache key must match what handleSupabaseProxy uses
+        const cacheKey = 'GET:' + url + ':Bearer ' + svcKey;
+        if (r.ok) _setCached(cacheKey, r.status, resHeaders, body, 60_000);
+        console.log(`[warmup] ${q.split('?')[0]} OK (${body.length} bytes)`);
+      } catch (e) { console.warn(`[warmup] failed:`, e.message); }
+    }
+    // Also prime ads cache and maintenance cache
+    try { await handleAdsSettings({}, { writeHead: ()=>{}, end: ()=>{} }); } catch {}
+    try {
+      const r = await supaFetch('system_settings?key=eq.maintenance_mode&select=value');
+      const arr = await r.json();
+      _maintCache = { val: Array.isArray(arr) && arr[0]?.value === 'true', ts: Date.now() };
+      console.log('[warmup] maintenance_mode OK');
+    } catch (e) { console.warn('[warmup] maintenance_mode failed:', e.message); }
+    console.log('[warmup] cache pre-warm complete');
+  }, 500);
 });
 
 /* ────────────────────────────────────────────────────────────

@@ -2,12 +2,12 @@
    MozPay — App Logic
    ============================================ */
 
-// Browser connects DIRECTLY to Supabase — no proxy.
-// Routing through the Render/Replit reverse proxy caused ERR_HTTP2_PROTOCOL_ERROR
-// because WebSocket upgrades over HTTP/2 corrupted the shared HTTP/2 session.
-// The server-side /api/wallet, /api/transactions and /api/chat endpoints still
-// use the service-role key on the server, so RLS bypass is preserved where needed.
-const SUPABASE_URL = 'https://fbojmxiwvubepoywdhhc.supabase.co';
+// All Supabase traffic is routed through our own server proxy (/supabase/*).
+// This means the browser only needs ONE HTTP/2 connection (to our Render service)
+// instead of opening additional connections to supabase.co.
+// The server proxy caches GET responses in memory so they return in <5 ms,
+// which avoids ERR_HTTP2_PROTOCOL_ERROR on networks that drop slow HTTP/2 streams.
+const SUPABASE_URL = window.location.origin + '/supabase';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZib2pteGl3dnViZXBveXdkaGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MTgzNTgsImV4cCI6MjA5MjI5NDM1OH0.2h2RL0HY885TnPoRZEQQbjVr1PVKoxpppzRs9wMqCp0';
 
 // Configure Supabase to persist session in localStorage (keep user logged in)
